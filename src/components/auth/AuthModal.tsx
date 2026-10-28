@@ -7,10 +7,11 @@ interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialTab?: 'login' | 'register' | 'forgot';
+  pendingPlan?: any;
   onAuthSuccess?: (user: any, licenseData?: any) => void;
 }
 
-export default function AuthModal({ isOpen, onClose, initialTab = 'login', onAuthSuccess }: AuthModalProps) {
+export default function AuthModal({ isOpen, onClose, initialTab = 'login', pendingPlan, onAuthSuccess }: AuthModalProps) {
   const [tab, setTab] = useState<'login' | 'register' | 'forgot'>(initialTab);
 
   // Form states
@@ -235,6 +236,19 @@ export default function AuthModal({ isOpen, onClose, initialTab = 'login', onAut
             Quên Mật Khẩu
           </button>
         </div>
+
+        {/* Pending Plan Requirement Notice */}
+        {pendingPlan && (
+          <div className="rounded-2xl bg-amber-500/10 border-2 border-amber-500/30 p-3 text-xs text-amber-900 dark:text-amber-200 font-bold flex items-center gap-2.5">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-500 text-white font-black text-sm">
+              ⚡
+            </div>
+            <div className="leading-snug">
+              Bạn đang chọn mua: <span className="text-blood-700 dark:text-blood-400 font-black">{pendingPlan.name}</span>.<br />
+              Vui lòng đăng nhập hoặc tạo tài khoản để hệ thống nạp giờ trực tiếp vào tài khoản của bạn.
+            </div>
+          </div>
+        )}
 
         {/* Feedback Messages */}
         {errorMsg && (

@@ -12,6 +12,12 @@
   --text-muted: #475569;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
 .dark {
   --background: #070A0F;
   --foreground: #F8FAFC;

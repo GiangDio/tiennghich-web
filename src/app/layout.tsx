@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import JsonLd from '@/components/seo/JsonLd';
+import { AuthProvider } from '@/context/AuthContext';
+import MobileBottomBar from '@/components/layout/MobileBottomBar';
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://autotiennghich.vercel.app'),
@@ -104,7 +106,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <JsonLd />
       </head>
       <body className="antialiased min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-300">
-        {children}
+        <AuthProvider>
+          <div className="pb-16 md:pb-0 flex flex-col min-h-screen">
+            {children}
+          </div>
+          <MobileBottomBar />
+        </AuthProvider>
       </body>
     </html>
   );

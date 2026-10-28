@@ -50,7 +50,7 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#pricing" className="hover:text-blood-600 dark:hover:text-blood-400 transition-colors">
+                <a href="/bang-gia" className="hover:text-blood-600 dark:hover:text-blood-400 transition-colors">
                   • Bảng Giá 5 Gói Server PayOS
                 </a>
               </li>

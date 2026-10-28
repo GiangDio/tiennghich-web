@@ -29,11 +29,11 @@ export default function InstallationGuide() {
           </p>
         </div>
 
-        {/* Tab Selection Bar (Sáng Đục Frosted Glass / Dark Glass) */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto p-1.5 rounded-2xl glass-milky dark:bg-slate-900/95 dark:border-slate-700">
+        {/* Tab Selection Bar (Responsive 2x2 on mobile / flex on PC) */}
+        <div className="mt-8 sm:mt-10 grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto p-1.5 rounded-2xl glass-milky dark:bg-slate-900/95 dark:border-slate-700">
           <button
             onClick={() => setActiveTab('android')}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all ${
+            className={`flex items-center justify-center gap-2 px-3 py-2.5 sm:px-4 rounded-xl text-xs sm:text-sm font-black transition-all ${
               activeTab === 'android'
                 ? 'bg-blood-600 text-white shadow-md shadow-blood-600/30'
                 : 'text-slate-800 hover:text-black hover:bg-slate-200/60 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
@@ -44,35 +44,35 @@ export default function InstallationGuide() {
 
           <button
             onClick={() => setActiveTab('pc')}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all ${
+            className={`flex items-center justify-center gap-2 px-3 py-2.5 sm:px-4 rounded-xl text-xs sm:text-sm font-black transition-all ${
               activeTab === 'pc'
                 ? 'bg-blood-600 text-white shadow-md shadow-blood-600/30'
                 : 'text-slate-800 hover:text-black hover:bg-slate-200/60 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
             }`}
           >
-            <Monitor className="h-4 w-4" /> Máy Tính PC (Extension)
+            <Monitor className="h-4 w-4" /> Máy Tính PC
           </button>
 
           <button
             onClick={() => setActiveTab('usage')}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all ${
+            className={`flex items-center justify-center gap-2 px-3 py-2.5 sm:px-4 rounded-xl text-xs sm:text-sm font-black transition-all ${
               activeTab === 'usage'
                 ? 'bg-blood-600 text-white shadow-md shadow-blood-600/30'
                 : 'text-slate-800 hover:text-black hover:bg-slate-200/60 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
             }`}
           >
-            <BookOpen className="h-4 w-4" /> Tính Năng & Cách Dùng
+            <BookOpen className="h-4 w-4" /> Cách Dùng
           </button>
 
           <button
             onClick={() => setActiveTab('faq')}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all ${
+            className={`flex items-center justify-center gap-2 px-3 py-2.5 sm:px-4 rounded-xl text-xs sm:text-sm font-black transition-all ${
               activeTab === 'faq'
                 ? 'bg-blood-600 text-white shadow-md shadow-blood-600/30'
                 : 'text-slate-800 hover:text-black hover:bg-slate-200/60 dark:text-slate-300 dark:hover:text-white dark:hover:bg-slate-800'
             }`}
           >
-            <HelpCircle className="h-4 w-4" /> Câu Hỏi Thường Gặp (FAQ)
+            <HelpCircle className="h-4 w-4" /> Câu Hỏi (FAQ)
           </button>
         </div>
 
