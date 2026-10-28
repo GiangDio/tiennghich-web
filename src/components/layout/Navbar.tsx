@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Flame, Download, Key, Menu, X, BookOpen, Clock, ShieldCheck, User as UserIcon, LogOut, Settings } from 'lucide-react';
+import { Flame, Download, Menu, X, BookOpen, Clock, User as UserIcon, LogOut } from 'lucide-react';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 import AuthModal from '@/components/auth/AuthModal';
 
@@ -65,8 +65,8 @@ export default function Navbar() {
             </div>
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden items-center gap-6 lg:flex">
+          {/* Desktop Navigation Links (Only Customer-Facing Links) */}
+          <nav className="hidden items-center gap-7 lg:flex">
             <a
               href="#lookup"
               className="flex items-center gap-1.5 text-xs font-bold text-slate-700 transition-colors hover:text-blood-600 dark:text-slate-300 dark:hover:text-blood-400"
@@ -91,7 +91,7 @@ export default function Navbar() {
               href="#pricing"
               className="text-xs font-bold text-slate-700 transition-colors hover:text-blood-600 dark:text-slate-300 dark:hover:text-blood-400"
             >
-              5 Gói Server
+              5 Gói Cước
             </a>
             <a
               href="#download"
@@ -99,16 +99,6 @@ export default function Navbar() {
             >
               <Download className="h-3.5 w-3.5 text-sky-600" />
               Tải APK/PC
-            </a>
-            <a
-              href="https://tiennghich-payos.onrender.com/admin"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1 text-xs font-bold text-amber-700 transition-colors hover:text-amber-800 dark:text-amber-400"
-              title="Quản trị máy chủ Auto"
-            >
-              <Settings className="h-3.5 w-3.5" />
-              Admin Server
             </a>
           </nav>
 
@@ -256,14 +246,6 @@ export default function Navbar() {
                 className="rounded-xl px-3 py-2 text-sm font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
               >
                 📥 Tải Bản Cài Đặt APK / Extension PC
-              </a>
-              <a
-                href="https://tiennghich-payos.onrender.com/admin"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-xl px-3 py-2 text-sm font-bold text-amber-600 hover:bg-amber-50 dark:hover:bg-slate-800 flex items-center gap-1.5"
-              >
-                <Settings className="h-4 w-4" /> Quản Trị Server Admin (Render)
               </a>
             </div>
           </div>

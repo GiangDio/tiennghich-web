@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flame, ShieldCheck, HeartHandshake, Zap, MessageSquare, Terminal, Settings } from 'lucide-react';
+import { Flame, ShieldCheck, HeartHandshake, Zap, MessageSquare, Terminal } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Cột 3: Hướng Dẫn & Gói Cước */}
           <div>
-            <h4 className="text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">Liên Kết & Quản Trị</h4>
+            <h4 className="text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">Liên Kết Hữu Ích</h4>
             <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-slate-300">
               <li>
                 <a href="#lookup" className="hover:text-blood-600 dark:hover:text-blood-400 transition-colors">
@@ -60,15 +60,14 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a
-                  href="https://tiennghich-payos.onrender.com/admin"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-bold text-amber-600 hover:text-amber-700 dark:text-amber-400 transition-colors flex items-center gap-1"
-                >
-                  <Settings className="h-3 w-3" />
-                  • Quản Trị Viên (Admin Render)
+                <a href="#features" className="hover:text-blood-600 dark:hover:text-blood-400 transition-colors">
+                  • Chi Tiết 5 Phân Hệ Tính Năng Auto
                 </a>
+              </li>
+              <li>
+                <span className="text-emerald-700 dark:text-emerald-400 font-semibold">
+                  • Bảo Hành Hoàn Tiền 100% Nếu Lỗi
+                </span>
               </li>
             </ul>
           </div>
