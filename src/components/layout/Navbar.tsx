@@ -242,7 +242,7 @@ export default function Navbar() {
                 href={`${AUTO_SERVER_URL}/download/TienNghichAuto.apk`}
                 className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 py-2.5 px-3 text-xs font-black text-white shadow-md shadow-emerald-600/20 mb-1"
               >
-                <Smartphone className="h-4 w-4" /> Tải Ngay APK Cho Android (v3.1.0)
+                <Smartphone className="h-4 w-4" /> Tải Ngay APK Cho Android (v3.2.0)
               </a>
 
               <Link

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s | Tiên Nghịch Auto Mobile',
   },
   description:
-    'Phần mềm Tool Auto Tiên Nghịch Mobile mới nhất v3.1.0 cho Android APK & Extension PC. Tự động rèn tiên khí & tăng cấp khí đỉnh, leo Thông Thiên Tháp, vượt Vực U Minh, đánh chiếm Cực Âm Địa, tự đi Ải Chính Tuyến 24/7 nhẹ máy an toàn 100%.',
+    'Phần mềm Tool Auto Tiên Nghịch Mobile mới nhất v3.2.0 cho Android APK & Extension PC. Tự động rèn tiên khí & tăng cấp khí đỉnh, leo Thông Thiên Tháp, vượt Vực U Minh, đánh chiếm Cực Âm Địa, tự đi Ải Chính Tuyến 24/7 nhẹ máy an toàn 100%.',
   keywords: [
     'auto tiên nghịch mobile',
     'tool auto tiên nghịch mobile',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: 'Tiên Nghịch Auto Mobile',
     title: 'Tiên Nghịch Auto Mobile - Tool Cày Tự Động Game Tiên Nghịch Mobile Uy Tín #1',
     description:
-      'Tải ngay Tool Auto Tiên Nghịch Mobile v3.1.0: Tự động rèn đồ, chiếm cực âm địa, leo tháp, ải chính tuyến. Nhận ngay 20 phút miễn phí mỗi ngày!',
+      'Tải ngay Tool Auto Tiên Nghịch Mobile v3.2.0: Tự động rèn đồ, chiếm cực âm địa, leo tháp, ải chính tuyến. Nhận ngay 20 phút miễn phí mỗi ngày!',
     images: [
       {
         url: 'https://tiennghich-payos.onrender.com/download/preview.png',
@@ -101,7 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&family=Inter:wght@400;500;600;700;800;900&family=Fira+Code:wght@500;600;700&display=swap"
           rel="stylesheet"
         />
         <JsonLd />

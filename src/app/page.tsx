@@ -36,7 +36,7 @@ export default function HomePage() {
               📥 TRUNG TÂM TẢI VỀ
             </div>
             <h2 className="mt-3 text-3xl font-black text-slate-950 sm:text-4xl font-cinzel dark:text-white">
-              TẢI TOOL AUTO <span className="text-blood-gradient">TIÊN NGHỊCH MOBILE v3.1.0</span>
+              TẢI TOOL AUTO <span className="text-blood-gradient">TIÊN NGHỊCH MOBILE v3.2.0</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold">
               Tải bản APK cho điện thoại Android hoặc Extension ZIP cho trình duyệt máy tính PC. Cả 2 đều tự động cập nhật OTA khi có phiên bản mới mà không bao giờ mất giờ.
@@ -80,7 +80,7 @@ export default function HomePage() {
                   href={`${AUTO_SERVER_URL}/download/TienNghichAuto_Extension_PC.zip`}
                   className="flex items-center justify-center gap-2 rounded-xl bg-slate-950 py-3 text-xs font-black text-white shadow-md hover:bg-slate-800 active:scale-95 transition-all dark:bg-amber-600 dark:hover:bg-amber-500"
                 >
-                  <Download className="h-4 w-4" /> Tải Extension ZIP (v3.1.0)
+                  <Download className="h-4 w-4" /> Tải Extension ZIP (v3.2.0)
                 </a>
               </div>
             </div>
@@ -121,7 +121,7 @@ export default function HomePage() {
                   href={`${AUTO_SERVER_URL}/download/TienNghichAuto.apk`}
                   className="flex items-center justify-center gap-2 rounded-xl bg-blood-600 py-3 text-xs font-black text-white shadow-md shadow-blood-600/30 hover:bg-blood-700 active:scale-95 transition-all"
                 >
-                  <Download className="h-4 w-4" /> Tải Ứng Dụng APK (v3.1.0)
+                  <Download className="h-4 w-4" /> Tải Ứng Dụng APK (v3.2.0)
                 </a>
               </div>
             </div>

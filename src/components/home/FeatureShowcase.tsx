@@ -10,7 +10,7 @@ const featureTabs = [
     tabName: 'ĐẠO THÀNH',
     title: 'Rèn Tiên Khí & Nâng Khí Đỉnh Tự Động',
     desc: 'Tự động chọn lọc thuộc tính đánh giá tăng, lưu & rèn. So sánh trang bị mới thay thế đồ cũ và phân tách. Khi đủ Đá Sao Trời sẽ tự động nâng cấp Khí Đỉnh và dừng tool an toàn. Kèm tính năng Đấu Tiên Đài tự động.',
-    badge: 'ĐÃ CẬP NHẬT v3.1.0',
+    badge: 'ĐÃ CẬP NHẬT v3.2.0',
     iconColor: 'bg-blood-100 text-blood-700 dark:bg-blood-950/60 dark:text-blood-400',
   },
   {
@@ -37,7 +37,7 @@ const featureTabs = [
     tabName: 'LỊCH LUYỆN',
     title: 'Leo Tháp, Vực U Minh & Chiếm Cực Âm Địa',
     desc: 'Tự động leo Thông Thiên Tháp liên tục thu thập mốc quà. Vượt Vực U Minh nhận tài nguyên hiếm. Tự động quét Cực Âm Địa ưu tiên chọn động phủ còn chỗ trống (10/10, 25/25, 50/50, 200/200) để đánh chiếm tu luyện.',
-    badge: 'ĐÃ CẬP NHẬT v3.1.0',
+    badge: 'ĐÃ CẬP NHẬT v3.2.0',
     iconColor: 'bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400',
   },
   {
@@ -46,7 +46,7 @@ const featureTabs = [
     tabName: 'MA ĐẠO',
     title: 'Ải Chính Tuyến, Treo Máy & Rút X1000',
     desc: 'Tự động nhận thưởng treo máy & mua thêm lượt. Tự động đi Ải Chính Tuyến (bắt đầu, tự xếp đội hình, skip tức thì, tự qua ải kế, nhận thưởng vượt). Tự làm nhiệm vụ Quà Tiên Duyên trong sự kiện Rút X1000.',
-    badge: 'ĐÃ CẬP NHẬT v3.1.0',
+    badge: 'ĐÃ CẬP NHẬT v3.2.0',
     iconColor: 'bg-blood-100 text-blood-700 dark:bg-blood-950/60 dark:text-blood-400',
   },
   {

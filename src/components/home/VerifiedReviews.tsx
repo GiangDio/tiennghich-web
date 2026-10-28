@@ -22,7 +22,7 @@ const reviews = [
     plan: 'Gói 300 Giờ (Tháng VIP)',
     date: '3 ngày trước',
     comment:
-      'Điểm cộng lớn nhất là khoản Cực Âm Địa, trước kia toàn phải căn giờ vào chiếm mệt mỏi, giờ tool tự tìm động phủ còn chỗ để chiếm. Quá hài lòng với bản cập nhật v3.1.0 này!',
+      'Điểm cộng lớn nhất là khoản Cực Âm Địa, trước kia toàn phải căn giờ vào chiếm mệt mỏi, giờ tool tự tìm động phủ còn chỗ để chiếm. Quá hài lòng với bản cập nhật v3.2.0 này!',
   },
   {
     author: 'Tiêu Diệt Yêu Ma',
