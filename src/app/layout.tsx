@@ -3,7 +3,7 @@ import './globals.css';
 import JsonLd from '@/components/seo/JsonLd';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://tiennghichauto.vn'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://autotiennghich.vercel.app'),
   title: {
     default: 'Tiên Nghịch Auto Mobile - Tool Cày Tự Động Game Tiên Nghịch Mobile Uy Tín #1',
     template: '%s | Tiên Nghịch Auto Mobile',
@@ -71,12 +71,16 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  verification: {
+    google: 'Kko7eXvKx8n0qRXCitSV3bI5a_8-eBPE943p3jdjbDw',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className="scroll-smooth">
       <head>
+        <meta name="google-site-verification" content="Kko7eXvKx8n0qRXCitSV3bI5a_8-eBPE943p3jdjbDw" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

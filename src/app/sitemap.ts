@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://tiennghichauto.vn';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://autotiennghich.vercel.app';
   const now = new Date();
 
   return [
