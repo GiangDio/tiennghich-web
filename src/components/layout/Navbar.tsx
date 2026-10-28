@@ -68,13 +68,6 @@ export default function Navbar() {
           {/* Desktop Navigation Links (Only Customer-Facing Links) */}
           <nav className="hidden items-center gap-7 lg:flex">
             <a
-              href="#lookup"
-              className="flex items-center gap-1.5 text-xs font-bold text-slate-700 transition-colors hover:text-blood-600 dark:text-slate-300 dark:hover:text-blood-400"
-            >
-              <Clock className="h-4 w-4 text-blood-600 dark:text-blood-400" />
-              Tra Cứu Giờ
-            </a>
-            <a
               href="#features"
               className="text-xs font-bold text-slate-700 transition-colors hover:text-blood-600 dark:text-slate-300 dark:hover:text-blood-400"
             >
@@ -212,13 +205,6 @@ export default function Navbar() {
                 </div>
               )}
 
-              <a
-                href="#lookup"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-bold text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
-              >
-                <Clock className="h-4 w-4 text-blood-600" /> Tra Cứu Giờ Tài Khoản
-              </a>
               <a
                 href="#features"
                 onClick={() => setMobileMenuOpen(false)}

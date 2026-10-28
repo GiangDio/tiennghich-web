@@ -45,11 +45,6 @@ export default function Footer() {
             <h4 className="text-xs font-black uppercase tracking-wider text-slate-900 dark:text-white">Liên Kết Hữu Ích</h4>
             <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-slate-300">
               <li>
-                <a href="#lookup" className="hover:text-blood-600 dark:hover:text-blood-400 transition-colors">
-                  • Tra Cứu Giờ Auto Trực Tiếp
-                </a>
-              </li>
-              <li>
                 <a href="#guide" className="hover:text-blood-600 dark:hover:text-blood-400 transition-colors">
                   • Hướng Dẫn Cài Đặt Android & PC
                 </a>
