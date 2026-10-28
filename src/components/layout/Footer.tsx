@@ -12,7 +12,7 @@ export default function Footer() {
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blood-600 text-white shadow-xs">
                 <Flame className="h-5 w-5 text-amber-300" />
               </div>
-              <span className="font-black text-lg text-slate-900 tracking-wider font-cinzel dark:text-white">
+              <span className="font-black text-lg text-slate-900 tracking-wider dark:text-white">
                 TIÊN NGHỊCH AUTO
               </span>
             </div>

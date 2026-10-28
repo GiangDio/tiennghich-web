@@ -109,7 +109,7 @@ export default function CheckoutModal({
             <Wallet className="h-6 w-6" />
           </div>
           <div>
-            <h3 className="font-black text-slate-900 text-base font-cinzel dark:text-white leading-tight">
+            <h3 className="font-black text-slate-900 text-base dark:text-white leading-tight">
               MUA GÓI BẰNG SỐ DƯ
             </h3>
             <p className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">

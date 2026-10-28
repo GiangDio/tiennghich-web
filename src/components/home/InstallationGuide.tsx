@@ -21,7 +21,7 @@ export default function InstallationGuide() {
           <div className="inline-flex items-center gap-1.5 rounded-full border border-blood-500/30 bg-blood-50 px-3.5 py-1 text-xs font-black text-blood-700 dark:bg-blood-950/40 dark:text-blood-400">
             📖 CẨM NANG HƯỚNG DẪN CHI TIẾT
           </div>
-          <h2 className="mt-3 text-3xl font-black text-slate-950 sm:text-4xl md:text-5xl font-cinzel dark:text-white">
+          <h2 className="mt-3 text-3xl font-black text-slate-950 sm:text-4xl md:text-5xl dark:text-white">
             HƯỚNG DẪN CÀI ĐẶT & <span className="text-blood-gradient">SỬ DỤNG AUTO</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold">

@@ -22,7 +22,7 @@ export default function HeroSection() {
         </div>
 
         {/* Hero Title (Crisp & proportional on both Android phone screens and PC) */}
-        <h1 className="mt-5 sm:mt-6 text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-slate-950 font-cinzel dark:text-white leading-[1.2]">
+        <h1 className="mt-5 sm:mt-6 text-2xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-slate-950 dark:text-white leading-[1.2]">
           AUTO TIÊN NGHỊCH <span className="text-blood-gradient">MOBILE</span>
           <br />
           TOOL CÀY TỰ ĐỘNG <span className="text-gold-gradient">ĐỈNH CAO 24/7</span>

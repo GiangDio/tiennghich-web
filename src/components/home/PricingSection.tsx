@@ -41,7 +41,7 @@ export default function PricingSection() {
           <div className="inline-flex items-center gap-1.5 rounded-full border border-blood-500/30 bg-blood-50 px-3.5 py-1 text-xs font-black text-blood-700 dark:bg-blood-950/40 dark:text-blood-400">
             💎 BẢNG GIÁ MÁY CHỦ CHÍNH HÃNG
           </div>
-          <h2 className="mt-3 text-2xl sm:text-4xl md:text-5xl font-black text-slate-950 font-cinzel dark:text-white leading-tight">
+          <h2 className="mt-3 text-2xl sm:text-4xl md:text-5xl font-black text-slate-950 dark:text-white leading-tight">
             GÓI CƯỚC <span className="text-blood-gradient">BẢN QUYỀN AUTO</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold leading-relaxed">
@@ -126,7 +126,7 @@ export default function PricingSection() {
                     </Link>
                   </div>
 
-                  <h3 className="mt-3 text-lg font-black text-slate-950 dark:text-white font-cinzel">
+                  <h3 className="mt-3 text-lg font-black text-slate-950 dark:text-white">
                     {pkg.name}
                   </h3>
 

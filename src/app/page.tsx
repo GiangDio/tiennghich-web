@@ -35,7 +35,7 @@ export default function HomePage() {
             <div className="inline-flex items-center gap-1.5 rounded-full border border-sky-500/40 bg-sky-100 px-3.5 py-1 text-xs font-black text-sky-800 dark:bg-sky-950/40 dark:text-sky-300">
               📥 TRUNG TÂM TẢI VỀ
             </div>
-            <h2 className="mt-3 text-3xl font-black text-slate-950 sm:text-4xl font-cinzel dark:text-white">
+            <h2 className="mt-3 text-3xl font-black text-slate-950 sm:text-4xl dark:text-white">
               TẢI TOOL AUTO <span className="text-blood-gradient">TIÊN NGHỊCH MOBILE v1.0.0 Beta</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold">

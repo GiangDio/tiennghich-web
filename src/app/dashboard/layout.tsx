@@ -13,7 +13,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-surface-border pb-4">
           <div>
-            <h1 className="text-2xl font-black text-white font-cinzel">BẢNG ĐIỀU KHIỂN ĐẠO HỮU</h1>
+            <h1 className="text-2xl font-black text-white">BẢNG ĐIỀU KHIỂN ĐẠO HỮU</h1>
             <p className="text-xs text-gray-400 mt-1">
               Quản lý kho License Key, cấu hình phần cứng HWID và nạp tiền tự động 24/7.
             </p>

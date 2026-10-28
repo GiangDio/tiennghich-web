@@ -45,7 +45,7 @@ export default function SinglePlanPage() {
       <main className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
         <Navbar />
         <div className="mx-auto max-w-md py-24 px-4 text-center space-y-4">
-          <h1 className="text-2xl font-black font-cinzel">Không Tìm Thấy Gói Cước</h1>
+          <h1 className="text-2xl font-black">Không Tìm Thấy Gói Cước</h1>
           <p className="text-xs text-slate-600 dark:text-slate-400">
             Gói cước bạn đang tìm kiếm không tồn tại hoặc đã được cập nhật.
           </p>
@@ -100,7 +100,7 @@ export default function SinglePlanPage() {
                 {plan.badge}
               </span>
 
-              <h1 className="text-3xl sm:text-5xl font-black text-slate-950 font-cinzel dark:text-white leading-tight">
+              <h1 className="text-3xl sm:text-5xl font-black text-slate-950 dark:text-white leading-tight">
                 {plan.name}
               </h1>
 
@@ -182,7 +182,7 @@ export default function SinglePlanPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-baseline justify-between mb-8 gap-2">
             <div>
-              <h2 className="text-xl sm:text-2xl font-black text-slate-950 font-cinzel dark:text-white">
+              <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white">
                 CÁC GÓI CƯỚC KHÁC
               </h2>
               <p className="text-xs text-slate-500">Khám phá các lựa chọn thời gian khác</p>

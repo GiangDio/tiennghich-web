@@ -1,9 +1,17 @@
 import type { Metadata } from 'next';
+import { Be_Vietnam_Pro } from 'next/font/google';
 import './globals.css';
 import JsonLd from '@/components/seo/JsonLd';
 import { AuthProvider } from '@/context/AuthContext';
 import MobileBottomBar from '@/components/layout/MobileBottomBar';
 import LeftSidebar from '@/components/layout/LeftSidebar';
+
+const beVietnamPro = Be_Vietnam_Pro({
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  subsets: ['latin', 'vietnamese'],
+  display: 'swap',
+  variable: '--font-be-vietnam-pro',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://autotiennghich.vercel.app'),
@@ -81,7 +89,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="vi" className="scroll-smooth">
+    <html lang="vi" className={`scroll-smooth ${beVietnamPro.variable}`}>
       <head>
         <meta name="google-site-verification" content="Kko7eXvKx8n0qRXCitSV3bI5a_8-eBPE943p3jdjbDw" />
         <script
@@ -98,15 +106,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,900&family=Inter:wght@400;500;600;700;800;900&family=Fira+Code:wght@500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <JsonLd />
       </head>
-      <body className="antialiased min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-300">
+      <body className={`${beVietnamPro.className} antialiased min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-300`}>
         <AuthProvider>
           <div className="pb-16 md:pb-0 flex flex-col min-h-screen">
             {children}

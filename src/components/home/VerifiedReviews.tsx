@@ -44,7 +44,7 @@ export default function VerifiedReviews() {
           <div className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-50 px-3.5 py-1 text-xs font-black text-amber-800 dark:bg-amber-950/40 dark:text-amber-400">
             ⭐ 100% ĐÁNH GIÁ THỰC TẾ TỪ TU SĨ
           </div>
-          <h2 className="mt-3 text-3xl font-black text-slate-950 sm:text-4xl md:text-5xl font-cinzel dark:text-white">
+          <h2 className="mt-3 text-3xl font-black text-slate-950 sm:text-4xl md:text-5xl dark:text-white">
             ĐẠO HỮU NÓI GÌ VỀ <span className="text-blood-gradient">TIÊN NGHỊCH AUTO</span>?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold">
@@ -61,7 +61,7 @@ export default function VerifiedReviews() {
               <div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blood-700 to-blood-900 font-bold text-sm text-white font-cinzel shadow-xs">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blood-700 to-blood-900 font-bold text-sm text-white shadow-xs">
                       {r.avatar}
                     </div>
                     <div>

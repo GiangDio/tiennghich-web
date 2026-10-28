@@ -39,7 +39,7 @@ export default function Navbar() {
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="font-black text-lg text-slate-900 tracking-wider font-cinzel dark:text-white">
+                  <span className="font-black text-lg text-slate-900 tracking-wider dark:text-white">
                     TIÊN NGHỊCH
                   </span>
                   <span className="rounded-md bg-blood-600/10 px-1.5 py-0.5 text-[10px] font-black text-blood-600 border border-blood-600/30 dark:bg-blood-600/20 dark:text-blood-400">

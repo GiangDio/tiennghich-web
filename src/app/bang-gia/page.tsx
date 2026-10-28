@@ -68,7 +68,7 @@ export default function PricingPage() {
             💎 BẢNG GIÁ MÁY CHỦ CHÍNH THỨC
           </div>
 
-          <h1 className="mt-3 text-3xl sm:text-5xl font-black text-slate-950 font-cinzel dark:text-white leading-tight">
+          <h1 className="mt-3 text-3xl sm:text-5xl font-black text-slate-950 dark:text-white leading-tight">
             BẢNG GIÁ <span className="text-blood-gradient">GÓI CƯỚC TIÊN NGHỊCH AUTO</span>
           </h1>
 
@@ -176,7 +176,7 @@ export default function PricingPage() {
                       <span className="text-[11px] font-bold text-slate-500">{pkg.unitPriceDesc}</span>
                     </div>
 
-                    <h2 className="mt-3 text-lg sm:text-xl font-black text-slate-950 dark:text-white font-cinzel">
+                    <h2 className="mt-3 text-lg sm:text-xl font-black text-slate-950 dark:text-white">
                       {pkg.name}
                     </h2>
 
@@ -235,7 +235,7 @@ export default function PricingPage() {
       <section className="py-12 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 font-cinzel dark:text-white">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-950 dark:text-white">
               BẢNG SO SÁNH <span className="text-blood-gradient">CHI TIẾT 5 GÓI</span>
             </h2>
             <p className="mt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400 font-semibold">
@@ -322,7 +322,7 @@ export default function PricingPage() {
       <section className="py-14 border-t border-slate-200 dark:border-slate-800">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 space-y-6">
           <div className="text-center">
-            <h2 className="text-xl sm:text-2xl font-black text-slate-950 font-cinzel dark:text-white">
+            <h2 className="text-xl sm:text-2xl font-black text-slate-950 dark:text-white">
               CÂU HỎI THƯỜNG GẶP VỀ NẠP TIỀN & MUA GÓI
             </h2>
           </div>

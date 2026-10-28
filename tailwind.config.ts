@@ -48,9 +48,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ['"Be Vietnam Pro"', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        cinzel: ['"Be Vietnam Pro"', 'Inter', 'sans-serif'],
-        heading: ['"Be Vietnam Pro"', 'Inter', 'sans-serif'],
+        sans: ['var(--font-be-vietnam-pro)', 'sans-serif'],
+        cinzel: ['var(--font-be-vietnam-pro)', 'sans-serif'],
+        heading: ['var(--font-be-vietnam-pro)', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
       },
       boxShadow: {
