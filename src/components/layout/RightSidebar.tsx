@@ -18,6 +18,7 @@ import {
   ChevronRight,
   Clock,
   Layers,
+  PanelLeftClose,
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { SERVER_PACKAGES_LIST, AutoPackage, CreateOrderResponse } from '@/lib/server-api';
@@ -238,30 +239,43 @@ export default function RightSidebar() {
         className="absolute inset-0 bg-slate-950/60 backdrop-blur-xs transition-opacity animate-in fade-in duration-200"
       />
 
-      {/* Slide-over panel */}
-      <aside className="absolute inset-y-0 right-0 flex max-w-full pl-10">
-        <div className="w-screen max-w-md bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col animate-in slide-in-from-right duration-300">
+      {/* Slide-over panel on the LEFT */}
+      <aside className="absolute inset-y-0 left-0 flex max-w-full pr-10">
+        <div className="w-screen max-w-md bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shadow-2xl flex flex-col animate-in slide-in-from-left duration-300">
           {/* Header */}
-          <div className="p-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/80 dark:bg-slate-900/80">
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blood-600 to-amber-600 text-white shadow-md">
-                <Wallet className="h-5 w-5" />
+          <div className="p-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-md">
+            {/* Nút thu gọn thanh trái để riêng góc trái */}
+            <button
+              onClick={closeRightSidebar}
+              className="group flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-blood-500/30 bg-blood-50/80 dark:bg-blood-950/40 text-blood-700 dark:text-blood-300 hover:bg-blood-100 dark:hover:bg-blood-900/60 shadow-xs transition-all active:scale-95"
+              title="Thu gọn thanh bên trái"
+            >
+              <PanelLeftClose className="h-4 w-4 text-blood-600 dark:text-blood-400 group-hover:-translate-x-0.5 transition-transform" />
+              <span className="text-xs font-black">Thu Gọn</span>
+            </button>
+
+            {/* Account Title in Center */}
+            <div className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blood-600 to-amber-600 text-white shadow-xs">
+                <Wallet className="h-4 w-4" />
               </div>
               <div>
-                <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-wider">
-                  Bảng Điều Khiển Tài Khoản
+                <h2 className="text-xs font-black text-slate-900 dark:text-white uppercase tracking-wider">
+                  Bảng Điều Khiển
                 </h2>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-                  {user ? `Tài khoản: ${user.auto_account}` : 'Khách vãng lai'}
+                <p className="text-[10.5px] text-slate-500 dark:text-slate-400 font-semibold truncate max-w-[120px]">
+                  {user ? user.auto_account : 'Khách vãng lai'}
                 </p>
               </div>
             </div>
+
+            {/* Quick close button on far right */}
             <button
               onClick={closeRightSidebar}
-              className="p-2 rounded-xl text-slate-500 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition"
               title="Đóng bảng"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             </button>
           </div>
 

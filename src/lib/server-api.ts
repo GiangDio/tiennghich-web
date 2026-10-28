@@ -378,6 +378,9 @@ export async function createDepositOrder(
   error?: string;
 }> {
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 25000);
+
     const res = await fetch(`${AUTO_SERVER_URL}/api/deposit/create`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -385,13 +388,26 @@ export async function createDepositOrder(
         username: username.trim(),
         amount: Number(amount),
       }),
+      signal: controller.signal,
     });
-    const json = await res.json();
+    clearTimeout(timeoutId);
+
+    const text = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(text);
+    } catch {
+      return { success: false, error: 'Máy chủ đang tải dữ liệu, vui lòng thử lại sau 5 giây.' };
+    }
+
     if (!res.ok || !json.success) {
-      return { success: false, error: json.message || 'Không thể tạo đơn nạp tiền.' };
+      return { success: false, error: json.message || json.error || 'Không thể tạo đơn nạp tiền.' };
     }
     return { success: true, data: json };
-  } catch {
+  } catch (err: any) {
+    if (err?.name === 'AbortError') {
+      return { success: false, error: 'Hết thời gian kết nối máy chủ (Timeout). Vui lòng thử lại.' };
+    }
     return { success: false, error: 'Lỗi kết nối máy chủ nạp tiền!' };
   }
 }
@@ -412,6 +428,9 @@ export async function buyPackageWithBalance(
   plan_name?: string;
 }> {
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
+
     const res = await fetch(`${AUTO_SERVER_URL}/api/account/buy-package`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -419,8 +438,18 @@ export async function buyPackageWithBalance(
         username: username.trim(),
         plan_id: planId.trim(),
       }),
+      signal: controller.signal,
     });
-    const json = await res.json();
+    clearTimeout(timeoutId);
+
+    const text = await res.text();
+    let json: any = {};
+    try {
+      json = JSON.parse(text);
+    } catch {
+      return { success: false, error: 'Máy chủ phản hồi không đúng định dạng.' };
+    }
+
     if (!res.ok || !json.success) {
       return {
         success: false,
