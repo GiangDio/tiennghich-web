@@ -245,7 +245,7 @@ export default function AuthModal({ isOpen, onClose, initialTab = 'login', pendi
             </div>
             <div className="leading-snug">
               Bạn đang chọn mua: <span className="text-blood-700 dark:text-blood-400 font-black">{pendingPlan.name}</span>.<br />
-              Vui lòng đăng nhập hoặc tạo tài khoản để hệ thống nạp giờ trực tiếp vào tài khoản của bạn.
+              Vui lòng đăng nhập hoặc tạo tài khoản để nạp tiền và mua gói tự động.
             </div>
           </div>
         )}

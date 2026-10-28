@@ -5,11 +5,11 @@ import { CheckCircle2 } from 'lucide-react';
 
 const mockEvents = [
   { user: 'hoang***9', plan: 'Gói 300 Giờ (Tháng VIP)', action: 'vừa kích hoạt', time: '1 phút trước' },
-  { user: 'tu_si***88', plan: 'Gói 600 Giờ (Vô Địch)', action: 'vừa nạp', time: '3 phút trước' },
-  { user: '0965***750', plan: '80.000đ qua VietQR MB', action: 'vừa thanh toán', time: 'Vừa xong' },
+  { user: 'tu_si***88', plan: 'Gói 600 Giờ (Vô Địch)', action: 'vừa mua thành công', time: '3 phút trước' },
+  { user: '0965***750', plan: '80.000đ qua VietQR MB Bank', action: 'vừa nạp tiền', time: 'Vừa xong' },
   { user: 'thuctk***', plan: 'Gói 100 Giờ (Tuần Chuẩn)', action: 'vừa gia hạn', time: '5 phút trước' },
   { user: 'ma_dao***12', plan: 'Gói 300 Giờ (Tháng VIP)', action: 'vừa mua thành công', time: '2 phút trước' },
-  { user: 'khachhang_vip***', plan: '290.000đ qua VietQR', action: 'vừa nạp thành công', time: '4 phút trước' },
+  { user: 'khachhang_vip***', plan: '290.000đ qua VietQR MB Bank', action: 'vừa nạp tiền thành công', time: '4 phút trước' },
 ];
 
 export default function SocialProofToast() {

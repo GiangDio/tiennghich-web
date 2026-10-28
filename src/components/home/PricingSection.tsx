@@ -39,10 +39,10 @@ export default function PricingSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <div className="inline-flex items-center gap-1.5 rounded-full border border-blood-500/30 bg-blood-50 px-3.5 py-1 text-xs font-black text-blood-700 dark:bg-blood-950/40 dark:text-blood-400">
-            💎 NẠP GIỜ MÁY CHỦ CHÍNH HÃNG
+            💎 BẢNG GIÁ MÁY CHỦ CHÍNH HÃNG
           </div>
           <h2 className="mt-3 text-2xl sm:text-4xl md:text-5xl font-black text-slate-950 font-cinzel dark:text-white leading-tight">
-            GÓI CƯỚC <span className="text-blood-gradient">NẠP GIỜ AUTO</span>
+            GÓI CƯỚC <span className="text-blood-gradient">BẢN QUYỀN AUTO</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold leading-relaxed">
             Chỉ tính giờ khi bật tool trong game. Mua gói bằng số dư tài khoản. Nạp tiền ngân hàng tự động cộng số dư 24/7 qua VietQR (3-5 giây).

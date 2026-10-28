@@ -69,7 +69,7 @@ export default function PricingPage() {
           </div>
 
           <h1 className="mt-3 text-3xl sm:text-5xl font-black text-slate-950 font-cinzel dark:text-white leading-tight">
-            BẢNG GIÁ <span className="text-blood-gradient">NẠP GIỜ TIÊN NGHỊCH AUTO</span>
+            BẢNG GIÁ <span className="text-blood-gradient">GÓI CƯỚC TIÊN NGHỊCH AUTO</span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold leading-relaxed">

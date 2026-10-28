@@ -40,7 +40,7 @@ export default function HeroSection() {
             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blood-700 via-blood-600 to-blood-700 px-6 sm:px-8 py-3.5 text-xs sm:text-sm font-black text-white shadow-lg shadow-blood-600/30 hover:brightness-110 active:scale-95 transition-all"
           >
             <Flame className="h-4 w-4 text-amber-300 animate-bounce" />
-            <span>Xem Bảng Giá & Nạp Giờ</span>
+            <span>Xem Bảng Giá & Mua Gói</span>
           </Link>
 
           <a
