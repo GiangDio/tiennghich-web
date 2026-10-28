@@ -34,6 +34,7 @@ export default function RightSidebar() {
     openRightSidebar,
     refreshBalance,
     openAuthModal,
+    updateUserEmail,
   } = useAuth();
 
   const [activeTab, setActiveTab] = useState<'overview' | 'deposit' | 'packages'>('overview');
@@ -51,6 +52,50 @@ export default function RightSidebar() {
   // Buy Package State
   const [buyingPlanId, setBuyingPlanId] = useState<string | null>(null);
   const [purchaseMsg, setPurchaseMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  // Email Update State
+  const [isEditingEmail, setIsEditingEmail] = useState(false);
+  const [newEmailInput, setNewEmailInput] = useState('');
+  const [emailSaving, setEmailSaving] = useState(false);
+  const [emailSaveMsg, setEmailSaveMsg] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+
+  const hasRealEmail = Boolean(user?.email && !user.email.includes('@tiennghichauto.vn') && user.email.trim() !== '');
+
+  const handleSaveEmail = async () => {
+    if (!user) return;
+    const cleanEmail = newEmailInput.trim().toLowerCase();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(cleanEmail)) {
+      setEmailSaveMsg({ type: 'error', text: 'Vui lòng nhập đúng định dạng Gmail (ví dụ: name@gmail.com)!' });
+      return;
+    }
+    setEmailSaving(true);
+    setEmailSaveMsg(null);
+    try {
+      const res = await fetch('/api/account/update-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: user.auto_account,
+          email: cleanEmail,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        updateUserEmail(cleanEmail);
+        setIsEditingEmail(false);
+        setNewEmailInput('');
+        setEmailSaveMsg({ type: 'success', text: 'Cập nhật Gmail thành công!' });
+        setTimeout(() => setEmailSaveMsg(null), 3000);
+      } else {
+        setEmailSaveMsg({ type: 'error', text: data.error || 'Cập nhật Gmail thất bại.' });
+      }
+    } catch {
+      setEmailSaveMsg({ type: 'error', text: 'Lỗi kết nối máy chủ.' });
+    } finally {
+      setEmailSaving(false);
+    }
+  };
 
   const pollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -399,6 +444,30 @@ export default function RightSidebar() {
             {/* ============================================================ */}
             {activeTab === 'overview' && (
               <div className="space-y-4 animate-in fade-in duration-200">
+                {/* Warning Banner if No Gmail configured yet */}
+                {user && !hasRealEmail && (
+                  <div className="rounded-xl border border-amber-400 bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent p-3 space-y-1.5 dark:border-amber-500/40">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-black text-amber-800 dark:text-amber-300 flex items-center gap-1.5">
+                        <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0" />
+                        Chưa cập nhật Gmail bảo mật!
+                      </span>
+                      <button
+                        onClick={() => {
+                          setIsEditingEmail(true);
+                          setNewEmailInput('');
+                        }}
+                        className="px-2.5 py-1 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-[11px] font-black transition"
+                      >
+                        Thêm Ngay
+                      </button>
+                    </div>
+                    <p className="text-[10.5px] text-slate-600 dark:text-slate-300 leading-snug">
+                      Tài khoản của bạn chưa có Gmail. Vui lòng thêm Gmail để nhận mã OTP lấy lại mật khẩu và có thể đăng nhập bằng Gmail bất cứ lúc nào!
+                    </p>
+                  </div>
+                )}
+
                 {/* Account Details Box */}
                 {user ? (
                   <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-800/40 p-4 space-y-3">
@@ -408,12 +477,76 @@ export default function RightSidebar() {
                         🔑 {user.auto_account}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-700/60 pb-2">
-                      <span className="text-xs text-slate-500 dark:text-slate-400">Email liên kết:</span>
-                      <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                        {user.email || 'Chưa thiết lập'}
-                      </span>
+
+                    {/* Email Row with Edit / Add Button */}
+                    <div className="border-b border-slate-100 dark:border-slate-700/60 pb-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-slate-500 dark:text-slate-400">Gmail bảo mật:</span>
+                        <div className="flex items-center gap-1.5">
+                          {hasRealEmail ? (
+                            <>
+                              <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
+                                📧 {user.email}
+                              </span>
+                              <button
+                                onClick={() => {
+                                  setIsEditingEmail(!isEditingEmail);
+                                  setNewEmailInput(user.email || '');
+                                }}
+                                className="text-[10px] font-bold text-blood-600 dark:text-blood-400 underline hover:opacity-80 ml-1"
+                              >
+                                {isEditingEmail ? 'Hủy' : 'Đổi'}
+                              </button>
+                            </>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                setIsEditingEmail(true);
+                                setNewEmailInput('');
+                              }}
+                              className="px-2 py-0.5 rounded bg-amber-500 text-white font-bold text-[10.5px] hover:bg-amber-600 transition"
+                            >
+                              + Thêm Gmail
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Inline Input when editing or adding email */}
+                      {isEditingEmail && (
+                        <div className="mt-2.5 space-y-1.5 bg-slate-50 dark:bg-slate-800/80 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700">
+                          <div className="text-[10.5px] font-bold text-slate-700 dark:text-slate-300">
+                            Nhập địa chỉ Gmail để nhận mã OTP khôi phục mật khẩu & đăng nhập:
+                          </div>
+                          <div className="flex gap-2">
+                            <input
+                              type="email"
+                              value={newEmailInput}
+                              onChange={(e) => setNewEmailInput(e.target.value)}
+                              placeholder="ví dụ: daohuutoan@gmail.com"
+                              className="flex-1 px-2.5 py-1.5 text-xs rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-blood-500"
+                            />
+                            <button
+                              onClick={handleSaveEmail}
+                              disabled={emailSaving}
+                              className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black disabled:opacity-50 transition"
+                            >
+                              {emailSaving ? 'Đang lưu...' : 'Lưu'}
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                      {emailSaveMsg && (
+                        <div
+                          className={`text-[10.5px] font-bold mt-1.5 ${
+                            emailSaveMsg.type === 'success' ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500'
+                          }`}
+                        >
+                          {emailSaveMsg.text}
+                        </div>
+                      )}
                     </div>
+
                     <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-700/60 pb-2">
                       <span className="text-xs text-slate-500 dark:text-slate-400">Số dư khả dụng:</span>
                       <span className="text-sm font-black text-emerald-600 dark:text-emerald-400">

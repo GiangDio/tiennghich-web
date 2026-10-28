@@ -27,12 +27,15 @@ export async function POST(req: Request) {
       if (serverAuth.success && serverAuth.username) {
         // Đồng bộ tài khoản từ server về local store
         const autoUser = serverAuth.username;
-        const autoEmail = cleanInput.includes('@') ? cleanInput : `${autoUser}@tiennghichauto.vn`;
+        const autoEmail = serverAuth.email || (cleanInput.includes('@') ? cleanInput : '');
         const regRes = await registerNewUser(autoUser, autoEmail, cleanPassword);
-        user = regRes.user;
+        user = regRes.user || findUserByAccountOrEmail(autoUser);
+        if (user && serverAuth.email) {
+          user.email = serverAuth.email;
+        }
       } else {
         return NextResponse.json(
-          { success: false, error: serverAuth.error || 'Tên tài khoản hoặc mật khẩu không chính xác.' },
+          { success: false, error: serverAuth.error || 'Tên tài khoản/Gmail hoặc mật khẩu không chính xác.' },
           { status: 401 }
         );
       }

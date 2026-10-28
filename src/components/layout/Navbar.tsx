@@ -115,6 +115,11 @@ export default function Navbar() {
                       <span className="text-xs font-black text-slate-900 dark:text-white leading-none">
                         {user.auto_account}
                       </span>
+                      {(!user.email || user.email.includes('@tiennghichauto.vn')) && (
+                        <span className="text-[9.5px] text-amber-600 dark:text-amber-400 font-bold bg-amber-500/10 px-1 py-0.2 rounded" title="Chưa cập nhật Gmail bảo mật">
+                          ⚠️ Chưa có Gmail
+                        </span>
+                      )}
                       <span className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
                         💰 {(user.balance || 0).toLocaleString('vi-VN')} đ
                       </span>

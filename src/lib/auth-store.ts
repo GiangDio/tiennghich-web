@@ -146,3 +146,27 @@ export function verifyOtpAndResetPassword(email: string, otp: string, newPass: s
 
   return { success: true };
 }
+
+/**
+ * Cập nhật địa chỉ Gmail cho tài khoản
+ */
+export function updateUserEmail(autoAccount: string, newEmail: string): { success: boolean; error?: string } {
+  const cleanAccount = autoAccount.trim().toLowerCase();
+  const cleanEmail = newEmail.trim().toLowerCase();
+
+  const user = findUserByAccountOrEmail(cleanAccount);
+  if (!user) {
+    return { success: false, error: 'Không tìm thấy tài khoản người dùng!' };
+  }
+
+  // Kiểm tra nếu email này đã có người khác dùng
+  for (const [k, u] of usersStore.entries()) {
+    if (k !== cleanAccount && u.auto_account.toLowerCase() !== cleanAccount && u.email.toLowerCase() === cleanEmail) {
+      return { success: false, error: 'Địa chỉ Gmail này đã được liên kết với một tài khoản khác!' };
+    }
+  }
+
+  user.email = cleanEmail;
+  usersStore.set(cleanAccount, user);
+  return { success: true };
+}

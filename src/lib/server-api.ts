@@ -523,3 +523,29 @@ export async function resetServerAccountPassword(
     return { success: false, error: 'Lỗi kết nối máy chủ Auto Render khi đổi mật khẩu!' };
   }
 }
+
+/**
+ * Cập nhật địa chỉ Gmail bảo mật cho tài khoản lên Server Auto Render
+ */
+export async function updateServerAccountEmail(
+  username: string,
+  email: string
+): Promise<{ success: boolean; message?: string; error?: string; email?: string }> {
+  try {
+    const res = await fetch(`${AUTO_SERVER_URL}/api/account/update-email`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username.trim(),
+        email: email.trim().toLowerCase(),
+      }),
+    });
+    const json = await res.json();
+    if (!res.ok || !json.success) {
+      return { success: false, error: json.message || 'Không thể cập nhật Gmail trên máy chủ.' };
+    }
+    return { success: true, message: json.message, email: json.email };
+  } catch {
+    return { success: false, error: 'Lỗi kết nối máy chủ khi cập nhật Gmail!' };
+  }
+}

@@ -41,6 +41,7 @@ interface AuthContextType {
   openRightSidebar: (tab?: RightSidebarTab, initialAmount?: number) => void;
   closeRightSidebar: () => void;
   toggleRightSidebar: () => void;
+  updateUserEmail: (newEmail: string) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -195,6 +196,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsRightSidebarOpen((prev) => !prev);
   }, []);
 
+  const updateUserEmail = useCallback((newEmail: string) => {
+    setUser((prev) => {
+      if (!prev) return null;
+      const updated: UserSession = { ...prev, email: newEmail };
+      localStorage.setItem('tn_user', JSON.stringify(updated));
+      return updated;
+    });
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -216,6 +226,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         openRightSidebar,
         closeRightSidebar,
         toggleRightSidebar,
+        updateUserEmail,
       }}
     >
       {children}
