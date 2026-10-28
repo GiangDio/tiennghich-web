@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { findUserByAccountOrEmail, generatePasswordOtp } from '@/lib/auth-store';
+import { sendOtpEmail } from '@/lib/mail';
 
 export async function POST(req: Request) {
   try {
@@ -14,7 +15,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const cleanEmail = email.trim().toLowerCase();
+    const cleanEmail = String(email).trim().toLowerCase();
     const user = findUserByAccountOrEmail(cleanEmail);
 
     if (!user) {
@@ -24,21 +25,26 @@ export async function POST(req: Request) {
       );
     }
 
-    // Sinh mã OTP 6 số
+    // Sinh mã OTP 6 số bảo mật
     const otpCode = generatePasswordOtp(cleanEmail);
 
-    // Gửi email hoặc log OTP trên server
-    console.log(`[GMAIL OTP SENT] Đã gửi mã xác nhận ${otpCode} đến địa chỉ: ${cleanEmail}`);
+    // Gửi email thực tế đến Gmail của người dùng
+    const mailRes = await sendOtpEmail(cleanEmail, otpCode);
+
+    if (!mailRes.success) {
+      return NextResponse.json(
+        { success: false, error: mailRes.error || 'Lỗi khi gửi email xác thực qua Gmail.' },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
-      message: `Mã OTP xác thực 6 chữ số đã được gửi đến hộp thư Gmail (${cleanEmail}). Vui lòng kiểm tra hộp thư đến hoặc thư rác.`,
-      // Để người dùng kiểm tra ngay lập tức trong môi trường thử nghiệm
-      demo_otp: otpCode,
+      message: `Mã OTP xác thực 6 chữ số đã được gửi đến hộp thư Gmail (${cleanEmail}). Vui lòng mở Gmail (kiểm tra cả mục Hộp thư đến và Thư rác/Spam) và nhập mã vào bên dưới.`,
     });
   } catch (err: unknown) {
     return NextResponse.json(
-      { success: false, error: 'Lỗi khi gửi mã xác nhận qua Gmail.' },
+      { success: false, error: 'Lỗi máy chủ khi gửi mã xác nhận qua Gmail.' },
       { status: 500 }
     );
   }

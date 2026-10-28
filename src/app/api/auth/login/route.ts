@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
-import { findUserByAccountOrEmail } from '@/lib/auth-store';
-import { checkServerAccount } from '@/lib/server-api';
+import { findUserByAccountOrEmail, registerNewUser } from '@/lib/auth-store';
+import { checkServerAccount, loginServerAccount } from '@/lib/server-api';
 
 export async function POST(req: Request) {
   try {
@@ -15,15 +15,37 @@ export async function POST(req: Request) {
       );
     }
 
-    const user = findUserByAccountOrEmail(username);
-    if (!user || user.password_hash !== password) {
+    const cleanInput = String(username).trim();
+    const cleanPassword = String(password).trim();
+
+    // 1. Kiểm tra tài khoản trong local store
+    let user = findUserByAccountOrEmail(cleanInput);
+
+    // 2. Nếu chưa có trong local store, hoặc kiểm tra với máy chủ Auto Render 24/7
+    if (!user || user.password_hash !== cleanPassword) {
+      const serverAuth = await loginServerAccount(cleanInput, cleanPassword);
+      if (serverAuth.success && serverAuth.username) {
+        // Đồng bộ tài khoản từ server về local store
+        const autoUser = serverAuth.username;
+        const autoEmail = cleanInput.includes('@') ? cleanInput : `${autoUser}@tiennghichauto.vn`;
+        const regRes = await registerNewUser(autoUser, autoEmail, cleanPassword);
+        user = regRes.user;
+      } else {
+        return NextResponse.json(
+          { success: false, error: serverAuth.error || 'Tên tài khoản hoặc mật khẩu không chính xác.' },
+          { status: 401 }
+        );
+      }
+    }
+
+    if (!user) {
       return NextResponse.json(
         { success: false, error: 'Tên tài khoản hoặc mật khẩu không chính xác.' },
         { status: 401 }
       );
     }
 
-    // Đồng bộ số giờ trực tiếp từ máy chủ Render 24/7
+    // 3. Đồng bộ số giờ trực tiếp từ máy chủ Render 24/7
     const liveLicense = await checkServerAccount(user.auto_account);
 
     return NextResponse.json({

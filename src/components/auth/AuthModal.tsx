@@ -26,7 +26,6 @@ export default function AuthModal({ isOpen, onClose, initialTab = 'login', onAut
   const [otpStep, setOtpStep] = useState<1 | 2>(1);
   const [otpCode, setOtpCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [receivedOtpNotice, setReceivedOtpNotice] = useState<string | null>(null);
 
   // Status & Feedback
   const [loading, setLoading] = useState(false);
@@ -127,11 +126,8 @@ export default function AuthModal({ isOpen, onClose, initialTab = 'login', onAut
       const data = await res.json();
 
       if (res.ok && data.success) {
-        setSuccessMsg(data.message);
-        if (data.demo_otp) {
-          setReceivedOtpNotice(`Mã OTP của bạn là: ${data.demo_otp}`);
-          setOtpCode(data.demo_otp);
-        }
+        setSuccessMsg(data.message || 'Mã OTP đã được gửi đến Gmail của bạn.');
+        setOtpCode('');
         setOtpStep(2);
       } else {
         setErrorMsg(data.error || 'Không thể gửi mã OTP.');
@@ -424,11 +420,9 @@ export default function AuthModal({ isOpen, onClose, initialTab = 'login', onAut
               </form>
             ) : (
               <form onSubmit={handleResetPassword} className="space-y-4">
-                {receivedOtpNotice && (
-                  <div className="rounded-xl bg-amber-100 border border-amber-300 p-2.5 text-xs text-amber-950 font-black dark:bg-amber-950/40 dark:border-amber-800 dark:text-amber-300">
-                    🔔 {receivedOtpNotice}
-                  </div>
-                )}
+                <div className="rounded-xl bg-blue-50 border border-blue-200 p-3 text-xs text-blue-950 font-medium dark:bg-blue-950/40 dark:border-blue-800 dark:text-blue-200 leading-relaxed">
+                  📩 Mã xác thực OTP 6 số đã được gửi tới <b>{forgotEmail}</b>. Vui lòng mở Gmail (kiểm tra cả mục <b>Hộp thư đến</b> và <b>Thư rác/Spam</b>), sau đó tự tay nhập mã vào ô bên dưới.
+                </div>
 
                 <div>
                   <label className="block text-xs font-black text-slate-950 dark:text-white mb-1">

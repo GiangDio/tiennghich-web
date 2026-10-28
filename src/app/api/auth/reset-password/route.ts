@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
-import { verifyOtpAndResetPassword } from '@/lib/auth-store';
+import { findUserByAccountOrEmail, verifyOtpAndResetPassword } from '@/lib/auth-store';
+import { resetServerAccountPassword } from '@/lib/server-api';
 
 export async function POST(req: Request) {
   try {
@@ -9,23 +10,32 @@ export async function POST(req: Request) {
 
     if (!email || !otp || !new_password) {
       return NextResponse.json(
-        { success: false, error: 'Vui lòng cung cấp đầy đủ Gmail, mã OTP và Mật khẩu mới.' },
+        { success: false, error: 'Vui lòng cung cấp đầy đủ Gmail, mã OTP 6 số và Mật khẩu mới.' },
         { status: 400 }
       );
     }
 
-    if (new_password.length < 6) {
+    const cleanEmail = String(email).trim().toLowerCase();
+    const cleanOtp = String(otp).trim();
+    const cleanPassword = String(new_password).trim();
+
+    if (cleanPassword.length < 6) {
       return NextResponse.json(
         { success: false, error: 'Mật khẩu mới phải có tối thiểu 6 ký tự.' },
         { status: 400 }
       );
     }
 
-    const resetRes = verifyOtpAndResetPassword(email, otp, new_password);
+    // 1. Xác thực mã OTP 6 số
+    const resetRes = verifyOtpAndResetPassword(cleanEmail, cleanOtp, cleanPassword);
 
     if (!resetRes.success) {
       return NextResponse.json({ success: false, error: resetRes.error }, { status: 400 });
     }
+
+    // 2. Đồng bộ mật khẩu mới lên máy chủ Auto Render
+    const user = findUserByAccountOrEmail(cleanEmail);
+    await resetServerAccountPassword(user?.auto_account || '', cleanPassword, cleanEmail);
 
     return NextResponse.json({
       success: true,

@@ -289,3 +289,83 @@ export async function fetchServerVersion() {
     };
   }
 }
+
+/**
+ * Đăng ký tài khoản Auto đồng bộ trực tiếp lên Server Auto Render (SQLite & Cloud 24/7)
+ */
+export async function registerServerAccount(
+  username: string,
+  password: string,
+  email: string
+): Promise<{ success: boolean; message?: string; error?: string }> {
+  try {
+    const res = await fetch(`${AUTO_SERVER_URL}/api/account/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username.trim(),
+        password: password.trim(),
+        email: email.trim(),
+        phone_or_note: email.trim(),
+      }),
+    });
+    const json = await res.json();
+    if (!res.ok || !json.success) {
+      return { success: false, error: json.message || 'Không thể tạo tài khoản trên máy chủ Auto.' };
+    }
+    return { success: true, message: json.message || 'Đăng ký thành công!' };
+  } catch (err: unknown) {
+    return { success: false, error: 'Không thể kết nối máy chủ Auto Render!' };
+  }
+}
+
+/**
+ * Đăng nhập tài khoản Auto trực tiếp từ Server Auto Render
+ */
+export async function loginServerAccount(
+  username: string,
+  password: string
+): Promise<{ success: boolean; message?: string; error?: string; username?: string }> {
+  try {
+    const res = await fetch(`${AUTO_SERVER_URL}/api/account/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username.trim(),
+        password: password.trim(),
+      }),
+    });
+    const json = await res.json();
+    if (!res.ok || !json.success) {
+      return { success: false, error: json.message || 'Sai tài khoản hoặc mật khẩu trên máy chủ.' };
+    }
+    return { success: true, message: json.message, username: json.username };
+  } catch {
+    return { success: false, error: 'Lỗi kết nối máy chủ Auto!' };
+  }
+}
+
+/**
+ * Cập nhật mật khẩu mới đồng bộ lên Server Auto Render
+ */
+export async function resetServerAccountPassword(
+  username: string,
+  newPassword: string,
+  email?: string
+): Promise<{ success: boolean; message?: string; error?: string }> {
+  try {
+    const res = await fetch(`${AUTO_SERVER_URL}/api/account/reset-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username ? username.trim() : '',
+        new_password: newPassword.trim(),
+        email: email ? email.trim() : '',
+      }),
+    });
+    const json = await res.json();
+    return { success: Boolean(json.success), message: json.message, error: json.error || json.message };
+  } catch {
+    return { success: false, error: 'Lỗi kết nối máy chủ Auto Render khi đổi mật khẩu!' };
+  }
+}
