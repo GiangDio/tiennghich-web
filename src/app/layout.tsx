@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     'tiên nghịch joyplay auto',
     'bản quyền tiên nghịch auto',
   ],
-  authors: [{ name: 'Tiên Nghịch Auto Team', url: 'https://tiennghichauto.vn' }],
+  authors: [{ name: 'Tiên Nghịch Auto Team', url: 'https://autotiennghich.vercel.app' }],
   creator: 'Tiên Nghịch Auto Team',
   publisher: 'Tiên Nghịch Auto Team',
   robots: {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'vi_VN',
-    url: 'https://tiennghichauto.vn',
+    url: 'https://autotiennghich.vercel.app',
     siteName: 'Tiên Nghịch Auto Mobile',
     title: 'Tiên Nghịch Auto Mobile - Tool Cày Tự Động Game Tiên Nghịch Mobile Uy Tín #1',
     description:
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     images: ['https://tiennghich-payos.onrender.com/download/preview.png'],
   },
   alternates: {
-    canonical: 'https://tiennghichauto.vn',
+    canonical: 'https://autotiennghich.vercel.app',
   },
   icons: {
     icon: '/favicon.ico',

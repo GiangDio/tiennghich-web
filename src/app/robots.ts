@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/admin/', '/dashboard/admin/'],
     },
-    sitemap: 'https://tiennghichauto.vn/sitemap.xml',
+    sitemap: 'https://autotiennghich.vercel.app/sitemap.xml',
   };
 }

@@ -6,7 +6,7 @@ export default function JsonLd() {
     '@graph': [
       {
         '@type': 'SoftwareApplication',
-        '@id': 'https://tiennghichauto.vn/#software',
+        '@id': 'https://autotiennghich.vercel.app/#software',
         name: 'Tiên Nghịch Auto - Tool Auto Tiên Nghịch Mobile',
         alternateName: [
           'Tool auto tiên nghịch mobile',
@@ -37,8 +37,8 @@ export default function JsonLd() {
       },
       {
         '@type': 'WebSite',
-        '@id': 'https://tiennghichauto.vn/#website',
-        url: 'https://tiennghichauto.vn',
+        '@id': 'https://autotiennghich.vercel.app/#website',
+        url: 'https://autotiennghich.vercel.app',
         name: 'Tiên Nghịch Auto Mobile - Trang Chủ Chính Thức',
         description:
           'Trang tải và mua bản quyền tool auto game Tiên Nghịch Mobile chính hãng. Hỗ trợ Android APK và Extension PC Chrome.',
