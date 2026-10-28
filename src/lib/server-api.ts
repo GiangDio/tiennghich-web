@@ -283,7 +283,7 @@ export async function fetchServerVersion() {
   } catch {
     return {
       success: true,
-      version: '3.1.0',
+      version: '1.0.1',
       apk_download_url: `${AUTO_SERVER_URL}/download/TienNghichAuto.apk`,
       extension_download_url: `${AUTO_SERVER_URL}/download/TienNghichAuto_Extension_PC.zip`,
     };

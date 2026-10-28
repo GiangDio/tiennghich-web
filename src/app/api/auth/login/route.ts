@@ -18,21 +18,24 @@ export async function POST(req: Request) {
     const cleanInput = String(username).trim();
     const cleanPassword = String(password).trim();
 
-    // 1. Kiểm tra tài khoản trong local store
-    let user = findUserByAccountOrEmail(cleanInput);
-
-    // 2. Nếu chưa có trong local store, hoặc kiểm tra với máy chủ Auto Render 24/7
-    if (!user || user.password_hash !== cleanPassword) {
-      const serverAuth = await loginServerAccount(cleanInput, cleanPassword);
-      if (serverAuth.success && serverAuth.username) {
-        // Đồng bộ tài khoản từ server về local store
-        const autoUser = serverAuth.username;
-        const autoEmail = serverAuth.email || (cleanInput.includes('@') ? cleanInput : '');
-        const regRes = await registerNewUser(autoUser, autoEmail, cleanPassword);
-        user = regRes.user || findUserByAccountOrEmail(autoUser);
-        if (user && serverAuth.email) {
-          user.email = serverAuth.email;
-        }
+    // 1. Luôn ưu tiên xác thực và đồng bộ từ Máy Chủ Auto Render (Source of Truth)
+    let user = null;
+    const serverAuth = await loginServerAccount(cleanInput, cleanPassword);
+    
+    if (serverAuth.success && serverAuth.username) {
+      const autoUser = serverAuth.username;
+      const autoEmail = serverAuth.email || (cleanInput.includes('@') ? cleanInput : '');
+      const regRes = await registerNewUser(autoUser, autoEmail, cleanPassword);
+      user = regRes.user || findUserByAccountOrEmail(autoUser);
+      if (user) {
+        if (autoEmail) user.email = autoEmail;
+        user.password_hash = cleanPassword;
+      }
+    } else {
+      // Fallback: Kiểm tra local store nếu máy chủ Render đang bận hoặc offline tạm thời
+      const localUser = findUserByAccountOrEmail(cleanInput);
+      if (localUser && localUser.password_hash === cleanPassword) {
+        user = localUser;
       } else {
         return NextResponse.json(
           { success: false, error: serverAuth.error || 'Tên tài khoản/Gmail hoặc mật khẩu không chính xác.' },
