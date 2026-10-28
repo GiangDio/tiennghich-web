@@ -2,12 +2,11 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Home, Flame, Smartphone, User as UserIcon } from 'lucide-react';
+import { Home, Flame, CreditCard, User as UserIcon, Wallet } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
-import { AUTO_SERVER_URL } from '@/lib/server-api';
 
 export default function MobileBottomBar() {
-  const { user, openAuthModal } = useAuth();
+  const { user, openAuthModal, openRightSidebar } = useAuth();
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 shadow-[0_-4px_20px_rgba(0,0,0,0.15)] pb-[env(safe-area-inset-bottom)]">
@@ -33,25 +32,30 @@ export default function MobileBottomBar() {
           <span className="text-[10px] font-black tracking-tight">Bảng Giá</span>
         </Link>
 
-        {/* Tab 3: Tải APK Android */}
-        <a
-          href={`${AUTO_SERVER_URL}/download/TienNghichAuto.apk`}
-          className="flex flex-col items-center justify-center gap-0.5 text-emerald-700 dark:text-emerald-400 active:scale-95 transition-all"
+        {/* Tab 3: Nạp Tiền (Mở Drawer Nạp Tiền) */}
+        <button
+          onClick={() => openRightSidebar('deposit')}
+          className="flex flex-col items-center justify-center gap-0.5 text-emerald-600 dark:text-emerald-400 active:scale-95 transition-all"
         >
-          <Smartphone className="h-4 w-4 text-emerald-600" />
-          <span className="text-[10px] font-black tracking-tight">Tải APK</span>
-        </a>
+          <CreditCard className="h-4 w-4 text-emerald-600" />
+          <span className="text-[10px] font-black tracking-tight">Nạp Tiền</span>
+        </button>
 
-        {/* Tab 4: Tài Khoản */}
+        {/* Tab 4: Tài Khoản / Số Dư */}
         {user ? (
           <button
-            onClick={() => openAuthModal('login')}
+            onClick={() => openRightSidebar('overview')}
             className="flex flex-col items-center justify-center gap-0.5 text-slate-900 dark:text-white active:scale-95 transition-all"
           >
-            <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blood-600 text-[9px] font-black text-white">
-              {user.auto_account?.charAt(0)?.toUpperCase()}
+            <div className="flex items-center gap-1">
+              <div className="flex h-4 w-4 items-center justify-center rounded-full bg-blood-600 text-[9px] font-black text-white">
+                {user.auto_account?.charAt(0)?.toUpperCase()}
+              </div>
+              <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400">
+                {(user.balance || 0) >= 1000 ? `${Math.floor((user.balance || 0) / 1000)}k` : '0đ'}
+              </span>
             </div>
-            <span className="text-[10px] font-black truncate max-w-[70px]">
+            <span className="text-[9.5px] font-bold text-slate-500 dark:text-slate-400 truncate max-w-[70px]">
               {user.auto_account}
             </span>
           </button>

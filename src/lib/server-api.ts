@@ -325,7 +325,18 @@ export async function registerServerAccount(
 export async function loginServerAccount(
   username: string,
   password: string
-): Promise<{ success: boolean; message?: string; error?: string; username?: string }> {
+): Promise<{
+  success: boolean;
+  message?: string;
+  error?: string;
+  username?: string;
+  email?: string;
+  balance?: number;
+  total_deposited?: number;
+  remainingHoursStr?: string;
+  validityLeftStr?: string;
+  isActive?: boolean;
+}> {
   try {
     const res = await fetch(`${AUTO_SERVER_URL}/api/account/login`, {
       method: 'POST',
@@ -339,9 +350,123 @@ export async function loginServerAccount(
     if (!res.ok || !json.success) {
       return { success: false, error: json.message || 'Sai tài khoản hoặc mật khẩu trên máy chủ.' };
     }
-    return { success: true, message: json.message, username: json.username };
+    return {
+      success: true,
+      message: json.message,
+      username: json.username,
+      email: json.email || '',
+      balance: Number(json.balance || 0),
+      total_deposited: Number(json.total_deposited || 0),
+      remainingHoursStr: json.hours_str,
+      validityLeftStr: json.validity_str,
+      isActive: json.is_active,
+    };
   } catch {
     return { success: false, error: 'Lỗi kết nối máy chủ Auto!' };
+  }
+}
+
+/**
+ * Tạo đơn nạp tiền tùy ý vào tài khoản (Tối thiểu 10.000 VNĐ)
+ */
+export async function createDepositOrder(
+  username: string,
+  amount: number
+): Promise<{
+  success: boolean;
+  data?: CreateOrderResponse;
+  error?: string;
+}> {
+  try {
+    const res = await fetch(`${AUTO_SERVER_URL}/api/deposit/create`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username.trim(),
+        amount: Number(amount),
+      }),
+    });
+    const json = await res.json();
+    if (!res.ok || !json.success) {
+      return { success: false, error: json.message || 'Không thể tạo đơn nạp tiền.' };
+    }
+    return { success: true, data: json };
+  } catch {
+    return { success: false, error: 'Lỗi kết nối máy chủ nạp tiền!' };
+  }
+}
+
+/**
+ * Mua gói cước bằng số dư tài khoản
+ */
+export async function buyPackageWithBalance(
+  username: string,
+  planId: string
+): Promise<{
+  success: boolean;
+  message?: string;
+  error?: string;
+  new_balance?: number;
+  current_balance?: number;
+  needed_amount?: number;
+  plan_name?: string;
+}> {
+  try {
+    const res = await fetch(`${AUTO_SERVER_URL}/api/account/buy-package`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: username.trim(),
+        plan_id: planId.trim(),
+      }),
+    });
+    const json = await res.json();
+    if (!res.ok || !json.success) {
+      return {
+        success: false,
+        error: json.error || json.message || 'Số dư không đủ để mua gói này!',
+        current_balance: json.current_balance,
+        needed_amount: json.needed_amount,
+      };
+    }
+    return {
+      success: true,
+      message: json.message || 'Kích hoạt gói cước thành công!',
+      new_balance: json.new_balance,
+      plan_name: json.plan_name,
+    };
+  } catch {
+    return { success: false, error: 'Lỗi kết nối máy chủ khi mua gói!' };
+  }
+}
+
+/**
+ * Lấy số dư và trạng thái tài khoản hiện tại
+ */
+export async function getServerAccountBalance(username: string): Promise<{
+  success: boolean;
+  balance: number;
+  total_deposited: number;
+  remainingHoursStr?: string;
+  isActive?: boolean;
+}> {
+  try {
+    const res = await fetch(`${AUTO_SERVER_URL}/api/account/balance?username=${encodeURIComponent(username.trim())}`, {
+      cache: 'no-store',
+    });
+    const json = await res.json();
+    if (json && json.success) {
+      return {
+        success: true,
+        balance: Number(json.balance || 0),
+        total_deposited: Number(json.total_deposited || 0),
+        remainingHoursStr: json.hours_str,
+        isActive: json.is_active,
+      };
+    }
+    return { success: false, balance: 0, total_deposited: 0 };
+  } catch {
+    return { success: false, balance: 0, total_deposited: 0 };
   }
 }
 

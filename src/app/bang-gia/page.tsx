@@ -17,6 +17,7 @@ import {
   Star,
   CheckCircle2,
   XCircle,
+  Wallet,
 } from 'lucide-react';
 import { formatVND } from '@/lib/utils';
 import { SERVER_PACKAGES_LIST, ServerPackage } from '@/lib/server-api';
@@ -24,7 +25,7 @@ import { useAuth } from '@/context/AuthContext';
 import CheckoutModal from '@/components/pricing/CheckoutModal';
 
 export default function PricingPage() {
-  const { user, openAuthModal } = useAuth();
+  const { user, openAuthModal, openRightSidebar } = useAuth();
   const [selectedPlan, setSelectedPlan] = useState<ServerPackage>(SERVER_PACKAGES_LIST[2]);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [filter, setFilter] = useState<'all' | 'starter' | 'standard' | 'vip'>('all');
@@ -72,8 +73,27 @@ export default function PricingPage() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold leading-relaxed">
-            Chọn gói cước phù hợp với nhu cầu tu luyện của bạn. Quét mã VietQR tự động cộng giờ trong 3-5 giây, bảo hành giờ chơi và hỗ trợ 24/7.
+            Chọn gói cước phù hợp với nhu cầu tu luyện của bạn. Mua gói bằng số dư tài khoản. Nạp tiền ngân hàng tự động cộng số dư 24/7 trong 3-5 giây.
           </p>
+
+          {/* User Balance & Quick Deposit Banner */}
+          <div className="mt-5 flex items-center justify-center gap-3">
+            <div className="inline-flex items-center gap-2 rounded-2xl border border-emerald-500/30 bg-emerald-50/80 dark:bg-emerald-950/30 px-4 py-2 text-xs font-bold text-emerald-800 dark:text-emerald-300 shadow-xs">
+              <Wallet className="h-4 w-4 text-emerald-600" />
+              <span>
+                Số dư hiện có:{' '}
+                <b className="text-sm font-black text-emerald-600 dark:text-emerald-400">
+                  {formatVND(user?.balance || 0)}
+                </b>
+              </span>
+            </div>
+            <button
+              onClick={() => openRightSidebar('deposit')}
+              className="px-4 py-2 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 text-white font-black text-xs shadow-md transition active:scale-95"
+            >
+              + Nạp Tiền
+            </button>
+          </div>
 
           {/* Filter Pills */}
           <div className="mt-8 flex flex-wrap justify-center gap-2">

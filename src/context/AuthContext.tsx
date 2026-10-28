@@ -8,6 +8,9 @@ export interface UserSession {
   id?: string;
   auto_account: string;
   email?: string;
+  balance?: number;
+  total_deposited?: number;
+  role?: string;
 }
 
 export interface LicenseSession {
@@ -17,18 +20,27 @@ export interface LicenseSession {
   expiresAt?: number;
 }
 
+export type RightSidebarTab = 'overview' | 'deposit' | 'packages';
+
 interface AuthContextType {
   user: UserSession | null;
   license: LicenseSession | null;
   isAuthModalOpen: boolean;
   authModalTab: 'login' | 'register' | 'forgot';
   pendingPlan: ServerPackage | null;
+  isRightSidebarOpen: boolean;
+  rightSidebarTab: RightSidebarTab;
+  initialDepositAmount: number;
   openAuthModal: (tab?: 'login' | 'register' | 'forgot', pendingPlan?: ServerPackage) => void;
   closeAuthModal: () => void;
   logout: () => void;
   requireAuth: (onAuthorized: (user: UserSession) => void, pendingPlan?: ServerPackage) => void;
   refreshUser: () => void;
+  refreshBalance: () => Promise<number>;
   onLoginSuccess: (user: UserSession, license?: LicenseSession) => void;
+  openRightSidebar: (tab?: RightSidebarTab, initialAmount?: number) => void;
+  closeRightSidebar: () => void;
+  toggleRightSidebar: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -40,6 +52,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [authModalTab, setAuthModalTab] = useState<'login' | 'register' | 'forgot'>('login');
   const [pendingPlan, setPendingPlan] = useState<ServerPackage | null>(null);
   const [authorizedCallback, setAuthorizedCallback] = useState<((u: UserSession) => void) | null>(null);
+
+  // Right Sidebar State
+  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(false);
+  const [rightSidebarTab, setRightSidebarTab] = useState<RightSidebarTab>('overview');
+  const [initialDepositAmount, setInitialDepositAmount] = useState<number>(50000);
 
   const refreshUser = useCallback(() => {
     try {
@@ -58,6 +75,40 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch {
       setUser(null);
       setLicense(null);
+    }
+  }, []);
+
+  const refreshBalance = useCallback(async (): Promise<number> => {
+    try {
+      const savedUserStr = localStorage.getItem('tn_user');
+      if (!savedUserStr) return 0;
+      const currentUser = JSON.parse(savedUserStr);
+      if (!currentUser?.auto_account) return 0;
+
+      const res = await fetch(`/api/account/balance?username=${encodeURIComponent(currentUser.auto_account)}`);
+      const data = await res.json();
+      if (data && data.success) {
+        const newBal = Number(data.balance || 0);
+        const newTot = Number(data.total_deposited || 0);
+        const updatedUser: UserSession = {
+          ...currentUser,
+          balance: newBal,
+          total_deposited: newTot,
+        };
+        setUser(updatedUser);
+        localStorage.setItem('tn_user', JSON.stringify(updatedUser));
+        if (data.remainingHoursStr) {
+          setLicense((prev) => ({
+            ...prev,
+            remainingHoursStr: data.remainingHoursStr,
+            isActive: data.isActive,
+          }));
+        }
+        return newBal;
+      }
+      return currentUser.balance || 0;
+    } catch {
+      return 0;
     }
   }, []);
 
@@ -95,7 +146,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const requireAuth = useCallback(
     (onAuthorized: (u: UserSession) => void, plan?: ServerPackage) => {
-      // Re-check local storage
       const savedUser = localStorage.getItem('tn_user');
       if (savedUser) {
         try {
@@ -108,7 +158,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         } catch {}
       }
 
-      // Not authenticated: remember callback & plan, then open login modal
       setAuthorizedCallback(() => onAuthorized);
       openAuthModal('login', plan);
     },
@@ -124,7 +173,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.setItem('tn_license', JSON.stringify(loggedInLicense));
       }
 
-      // If there was a pending callback
       if (authorizedCallback) {
         authorizedCallback(loggedInUser);
         setAuthorizedCallback(null);
@@ -132,6 +180,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     },
     [authorizedCallback]
   );
+
+  const openRightSidebar = useCallback((tab: RightSidebarTab = 'overview', initialAmount: number = 50000) => {
+    setRightSidebarTab(tab);
+    setInitialDepositAmount(initialAmount);
+    setIsRightSidebarOpen(true);
+  }, []);
+
+  const closeRightSidebar = useCallback(() => {
+    setIsRightSidebarOpen(false);
+  }, []);
+
+  const toggleRightSidebar = useCallback(() => {
+    setIsRightSidebarOpen((prev) => !prev);
+  }, []);
 
   return (
     <AuthContext.Provider
@@ -141,12 +203,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isAuthModalOpen,
         authModalTab,
         pendingPlan,
+        isRightSidebarOpen,
+        rightSidebarTab,
+        initialDepositAmount,
         openAuthModal,
         closeAuthModal,
         logout,
         requireAuth,
         refreshUser,
+        refreshBalance,
         onLoginSuccess,
+        openRightSidebar,
+        closeRightSidebar,
+        toggleRightSidebar,
       }}
     >
       {children}

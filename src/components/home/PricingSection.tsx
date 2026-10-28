@@ -45,7 +45,7 @@ export default function PricingSection() {
             GÓI CƯỚC <span className="text-blood-gradient">NẠP GIỜ AUTO</span>
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold leading-relaxed">
-            Chỉ tính giờ khi bật tool trong game. Mua gói yêu cầu đăng nhập và được <b>cộng thẳng vào chính tài khoản</b> của bạn qua VietQR tự động (3-5 giây).
+            Chỉ tính giờ khi bật tool trong game. Mua gói bằng số dư tài khoản. Nạp tiền ngân hàng tự động cộng số dư 24/7 qua VietQR (3-5 giây).
           </p>
         </div>
 

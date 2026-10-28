@@ -125,16 +125,23 @@ export default function SinglePlanPage() {
                 <span>Quỹ thời gian: <b>{plan.active_hours} Giờ treo</b> (Thời hạn sử dụng: {plan.validity_days} ngày)</span>
               </div>
 
-              <div className="pt-4">
-                <button
-                  onClick={handleBuyClick}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-2xl bg-blood-600 px-8 py-4 text-sm font-black text-white shadow-xl shadow-blood-600/30 hover:bg-blood-700 active:scale-95 transition-all"
-                >
-                  <Flame className="h-5 w-5 text-amber-300 animate-pulse" />
-                  <span>Mua Ngay Gói Này ({formatVND(plan.price)})</span>
-                </button>
-                <p className="mt-2 text-[11px] text-slate-500 font-medium">
-                  * Yêu cầu đăng nhập hoặc đăng ký tài khoản trước khi nạp
+              <div className="pt-4 space-y-2">
+                {user && (
+                  <div className="inline-flex items-center gap-2 rounded-xl bg-slate-100 dark:bg-slate-800 px-3 py-1.5 text-xs text-slate-700 dark:text-slate-300 font-bold mb-1">
+                    <span>Số dư khả dụng: <b className="text-emerald-600 dark:text-emerald-400 font-black">{formatVND(user.balance || 0)}</b></span>
+                  </div>
+                )}
+                <div>
+                  <button
+                    onClick={handleBuyClick}
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-2xl bg-blood-600 px-8 py-4 text-sm font-black text-white shadow-xl shadow-blood-600/30 hover:bg-blood-700 active:scale-95 transition-all"
+                  >
+                    <Flame className="h-5 w-5 text-amber-300 animate-pulse" />
+                    <span>Mua Ngay Gói Này ({formatVND(plan.price)})</span>
+                  </button>
+                </div>
+                <p className="text-[11px] text-slate-500 font-medium">
+                  * Mua bằng số dư tài khoản. Nạp tiền ngân hàng tự động cộng số dư 24/7.
                 </p>
               </div>
             </div>

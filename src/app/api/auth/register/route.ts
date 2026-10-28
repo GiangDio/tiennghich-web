@@ -56,6 +56,8 @@ export async function POST(req: Request) {
         auto_account: cleanAccount,
         email: cleanEmail,
         role: 'user',
+        balance: 0,
+        total_deposited: 0,
       },
       licenseData: liveLicense.success ? liveLicense.data : null,
     });

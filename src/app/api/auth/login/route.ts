@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic';
 import { NextResponse } from 'next/server';
 import { findUserByAccountOrEmail, registerNewUser } from '@/lib/auth-store';
-import { checkServerAccount, loginServerAccount } from '@/lib/server-api';
+import { checkServerAccount, loginServerAccount, getServerAccountBalance } from '@/lib/server-api';
 
 export async function POST(req: Request) {
   try {
@@ -45,8 +45,11 @@ export async function POST(req: Request) {
       );
     }
 
-    // 3. Đồng bộ số giờ trực tiếp từ máy chủ Render 24/7
-    const liveLicense = await checkServerAccount(user.auto_account);
+    // 3. Đồng bộ số giờ & số dư trực tiếp từ máy chủ Render 24/7
+    const [liveLicense, liveBalance] = await Promise.all([
+      checkServerAccount(user.auto_account),
+      getServerAccountBalance(user.auto_account),
+    ]);
 
     return NextResponse.json({
       success: true,
@@ -56,6 +59,8 @@ export async function POST(req: Request) {
         auto_account: user.auto_account,
         email: user.email,
         role: user.role,
+        balance: liveBalance.balance || 0,
+        total_deposited: liveBalance.total_deposited || 0,
       },
       licenseData: liveLicense.success ? liveLicense.data : null,
     });

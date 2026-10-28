@@ -2,14 +2,14 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Flame, Download, Menu, X, BookOpen, Clock, User as UserIcon, LogOut, Smartphone } from 'lucide-react';
+import { Flame, Download, Menu, X, BookOpen, Clock, User as UserIcon, LogOut, Smartphone, Wallet, CreditCard } from 'lucide-react';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 import { useAuth } from '@/context/AuthContext';
 import { AUTO_SERVER_URL } from '@/lib/server-api';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, license, openAuthModal, logout } = useAuth();
+  const { user, license, openAuthModal, logout, openRightSidebar, toggleRightSidebar } = useAuth();
 
   const openAuth = (tab: 'login' | 'register') => {
     openAuthModal(tab);
@@ -76,26 +76,54 @@ export default function Navbar() {
             {/* Theme Toggle (Sáng / Tối) */}
             <ThemeToggle />
 
+            {/* Quick Nạp Tiền Button */}
+            <button
+              onClick={() => openRightSidebar('deposit')}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-xs hover:from-emerald-700 hover:to-teal-700 shadow-md transition-all active:scale-95"
+              title="Nạp tiền vào tài khoản"
+            >
+              <CreditCard className="h-3.5 w-3.5" />
+              Nạp Tiền
+            </button>
+
             {/* User Session */}
             {user ? (
               <div className="flex items-center gap-2 rounded-xl border border-slate-200/90 bg-white/90 px-3 py-1.5 shadow-xs dark:bg-slate-800 dark:border-slate-700">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blood-600 text-white font-bold text-xs">
-                  {user.auto_account?.charAt(0)?.toUpperCase() || 'U'}
-                </div>
-                <div className="text-left">
-                  <div className="text-xs font-black text-slate-900 dark:text-white leading-none">
-                    {user.auto_account}
+                <button
+                  onClick={() => openRightSidebar('overview')}
+                  className="flex items-center gap-2 hover:opacity-80 transition text-left"
+                  title="Xem thông tin tài khoản"
+                >
+                  <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blood-600 text-white font-bold text-xs">
+                    {user.auto_account?.charAt(0)?.toUpperCase() || 'U'}
                   </div>
-                  {license?.remainingHoursStr && (
-                    <div className="text-[10px] text-blood-600 dark:text-blood-400 font-bold">
-                      {license.remainingHoursStr}
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs font-black text-slate-900 dark:text-white leading-none">
+                        {user.auto_account}
+                      </span>
+                      <span className="text-[11px] font-black text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded">
+                        💰 {(user.balance || 0).toLocaleString('vi-VN')} đ
+                      </span>
                     </div>
-                  )}
-                </div>
+                    {license?.remainingHoursStr && (
+                      <div className="text-[10px] text-blood-600 dark:text-blood-400 font-bold mt-0.5">
+                        ⏳ {license.remainingHoursStr}
+                      </div>
+                    )}
+                  </div>
+                </button>
+                <button
+                  onClick={toggleRightSidebar}
+                  title="Mở Bảng Điều Khiển"
+                  className="p-1.5 hover:bg-slate-100 rounded-lg dark:hover:bg-slate-700 text-slate-500 hover:text-slate-900 dark:hover:text-white transition"
+                >
+                  <Menu className="h-4 w-4" />
+                </button>
                 <button
                   onClick={logout}
                   title="Đăng xuất"
-                  className="ml-1 p-1 hover:bg-slate-100 rounded dark:hover:bg-slate-700 text-slate-400 hover:text-red-500"
+                  className="p-1 hover:bg-slate-100 rounded dark:hover:bg-slate-700 text-slate-400 hover:text-red-500"
                 >
                   <LogOut className="h-3.5 w-3.5" />
                 </button>
@@ -116,16 +144,23 @@ export default function Navbar() {
                 >
                   Đăng Ký
                 </button>
+                <button
+                  onClick={toggleRightSidebar}
+                  title="Bảng Điều Khiển"
+                  className="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-blood-500"
+                >
+                  <Menu className="h-4 w-4" />
+                </button>
               </div>
             )}
 
-            <Link
-              href="/bang-gia"
+            <button
+              onClick={() => openRightSidebar('packages')}
               className="flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-blood-600 via-blood-700 to-blood-800 px-3.5 py-2 text-xs font-bold text-white shadow-md hover:brightness-110 active:scale-95 transition-all"
             >
               <Flame className="h-3.5 w-3.5 text-amber-200" />
               Nạp Giờ
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Right Controls */}
@@ -180,6 +215,28 @@ export default function Navbar() {
                   </button>
                 </div>
               )}
+
+              {/* Nạp Tiền & Bảng Điều Khiển trong Menu Mobile */}
+              <div className="grid grid-cols-2 gap-2 mb-2">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    openRightSidebar('deposit');
+                  }}
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-xs shadow-sm"
+                >
+                  <CreditCard className="h-4 w-4" /> 💳 Nạp Tiền
+                </button>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    openRightSidebar('overview');
+                  }}
+                  className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-black text-xs border border-slate-200 dark:border-slate-700"
+                >
+                  <Wallet className="h-4 w-4" /> 📊 Bảng Số Dư
+                </button>
+              </div>
 
               {/* Quick Android APK Download Button in Mobile Menu */}
               <a
