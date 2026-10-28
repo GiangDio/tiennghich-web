@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: '%s | Tiên Nghịch Auto Mobile',
   },
   description:
-    'Phần mềm Tool Auto Tiên Nghịch Mobile mới nhất v3.2.0 cho Android APK & Extension PC. Tự động rèn tiên khí & tăng cấp khí đỉnh, leo Thông Thiên Tháp, vượt Vực U Minh, đánh chiếm Cực Âm Địa, tự đi Ải Chính Tuyến 24/7 nhẹ máy an toàn 100%.',
+    'Phần mềm Tool Auto Tiên Nghịch Mobile mới nhất v1.0.0 Beta cho Android APK & Extension PC. Tự động rèn tiên khí & tăng cấp khí đỉnh, leo Thông Thiên Tháp, vượt Vực U Minh, đánh chiếm Cực Âm Địa, tự đi Ải Chính Tuyến 24/7 nhẹ máy an toàn 100%.',
   keywords: [
     'auto tiên nghịch mobile',
     'tool auto tiên nghịch mobile',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     siteName: 'Tiên Nghịch Auto Mobile',
     title: 'Tiên Nghịch Auto Mobile - Tool Cày Tự Động Game Tiên Nghịch Mobile Uy Tín #1',
     description:
-      'Tải ngay Tool Auto Tiên Nghịch Mobile v3.2.0: Tự động rèn đồ, chiếm cực âm địa, leo tháp, ải chính tuyến. Nhận ngay 20 phút miễn phí mỗi ngày!',
+      'Tải ngay Tool Auto Tiên Nghịch Mobile v1.0.0 Beta: Tự động rèn đồ, chiếm cực âm địa, leo tháp, ải chính tuyến. Nhận ngay 20 phút miễn phí mỗi ngày!',
     images: [
       {
         url: 'https://tiennghich-payos.onrender.com/download/preview.png',
