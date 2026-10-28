@@ -9,6 +9,15 @@ const nextConfig = {
     config.externals = [...(config.externals || []), 'bcrypt'];
     return config;
   },
+  async redirects() {
+    return [
+      {
+        source: '/dashboard/:path*',
+        destination: '/',
+        permanent: false,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
