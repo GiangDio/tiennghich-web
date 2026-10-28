@@ -153,7 +153,7 @@ export default function InstallationGuide() {
               <div>
                 <h3 className="text-lg font-black text-slate-950 dark:text-white">Cài Đặt Trên Trình Duyệt Máy Tính (Chrome / Edge / Cốc Cốc)</h3>
                 <p className="text-xs text-slate-700 dark:text-slate-300 font-semibold">
-                  Chạy mượt mà trực tiếp trên web game tiennghich.joyplay.vn, không làm nặng máy hay tốn dung lượng RAM.
+                  Chạy mượt mà trực tiếp trên web game tiennghich.joyplay.vn/play, không làm nặng máy hay tốn dung lượng RAM.
                 </p>
               </div>
             </div>
@@ -197,10 +197,10 @@ export default function InstallationGuide() {
                 </div>
                 <h4 className="text-sm font-black text-slate-950 dark:text-white">Mở Trang Game</h4>
                 <p className="text-xs text-slate-800 dark:text-slate-200 font-medium leading-relaxed">
-                  Truy cập vào trang web game <b>tiennghich.joyplay.vn</b>. Menu bong bóng Auto sẽ tự động xuất hiện trên màn hình góc phải để bạn bắt đầu sử dụng!
+                  Truy cập vào trang web game <b>tiennghich.joyplay.vn/play</b>. Menu bong bóng Auto sẽ tự động xuất hiện trên màn hình góc phải để bạn bắt đầu sử dụng!
                 </p>
                 <a
-                  href="https://tiennghich.joyplay.vn"
+                  href="https://tiennghich.joyplay.vn/play"
                   target="_blank"
                   rel="noreferrer"
                   className="mt-2 inline-flex w-full items-center justify-center gap-1.5 rounded-xl border-2 border-slate-300 bg-white py-2 text-xs font-black text-slate-900 hover:bg-slate-100 dark:bg-slate-700 dark:border-slate-600 dark:text-white"

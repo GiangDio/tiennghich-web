@@ -59,7 +59,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h3 className="text-base font-black text-slate-950 dark:text-white">Extension Tiện Ích Chrome / Edge / Cốc Cốc</h3>
-                    <p className="text-xs text-slate-700 dark:text-slate-300 font-semibold">Hoạt động trên web game tiennghich.joyplay.vn</p>
+                    <p className="text-xs text-slate-700 dark:text-slate-300 font-semibold">Hoạt động trên web game tiennghich.joyplay.vn/play</p>
                   </div>
                 </div>
                 <p className="mt-3 text-xs sm:text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-sans font-medium">
