@@ -4,7 +4,7 @@
 // Đồng bộ tài khoản, số giờ thực tế, tạo mã thanh toán VietQR / PayOS
 // ============================================================================
 
-export const AUTO_SERVER_URL = 'https://tiennghich-payos.onrender.com';
+export const AUTO_SERVER_URL = process.env.AUTO_SERVER_URL || process.env.NEXT_PUBLIC_AUTO_SERVER_URL || 'https://tiennghich-payos.onrender.com';
 
 export interface AutoPackage {
   id: string;
@@ -357,7 +357,7 @@ export async function loginServerAccount(
       email: json.email || '',
       balance: Number(json.balance || 0),
       total_deposited: Number(json.total_deposited || 0),
-      remainingHoursStr: json.hours_str,
+      remainingHoursStr: json.remaining_hours_str || json.hours_str,
       validityLeftStr: json.validity_str,
       isActive: json.is_active,
     };
