@@ -17,7 +17,7 @@ export default function HeroSection() {
         <div className="inline-flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 rounded-full border border-slate-300 bg-white/95 px-3 py-1 sm:px-4 sm:py-1.5 shadow-sm dark:bg-slate-900/95 dark:border-blood-500/40 max-w-full">
           <span className="flex h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-blood-600 animate-pulse" />
           <span className="text-[11px] sm:text-xs font-black text-slate-900 dark:text-slate-100">
-            <span className="text-blood-700 dark:text-blood-400">Tool Auto Tiên Nghịch Mobile</span> • Cày Tự Động v1.0.1 Beta • Rèn Khí Đỉnh • Chiếm Cực Âm Địa
+            <span className="text-blood-700 dark:text-blood-400">Tool Auto Tiên Nghịch Mobile</span> • Cày Tự Động v1.0.5 • Rèn Khí Đỉnh • Chiếm Cực Âm Địa
           </span>
         </div>
 
@@ -48,7 +48,7 @@ export default function HeroSection() {
             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 sm:px-7 py-3.5 text-xs sm:text-sm font-black text-white shadow-md shadow-emerald-600/20 hover:bg-emerald-700 active:scale-95 transition-all"
           >
             <Smartphone className="h-4 w-4 text-emerald-200" />
-            <span>Tải Trực Tiếp APK Android (v1.0.1 Beta)</span>
+            <span>Tải Trực Tiếp APK Android (v1.0.5)</span>
           </a>
 
           <Link
@@ -81,7 +81,7 @@ export default function HeroSection() {
           <div className="rounded-2xl glass-milky-card p-3.5 sm:p-4.5 text-center dark:bg-slate-900/95 dark:border-slate-700">
             <div className="flex items-center justify-center gap-1.5 text-sky-700 dark:text-sky-400">
               <Cpu className="h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="text-lg sm:text-2xl font-black text-slate-950 dark:text-white font-mono">v1.0.1 Beta</span>
+              <span className="text-lg sm:text-2xl font-black text-slate-950 dark:text-white font-mono">v1.0.5</span>
             </div>
             <div className="mt-1 text-[11px] sm:text-xs text-slate-900 dark:text-slate-200 font-bold">Bản Cập Nhật Mới Nhất</div>
           </div>

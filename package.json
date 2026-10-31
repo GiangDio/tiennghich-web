@@ -1,6 +1,6 @@
 {
   "name": "tiennghich-web",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "private": true,
   "description": "Nền tảng phân phối phần mềm và quản lý bản quyền Tiên Nghịch Auto",
   "scripts": {

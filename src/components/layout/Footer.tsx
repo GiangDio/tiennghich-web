@@ -99,7 +99,7 @@ export default function Footer() {
             © {new Date().getFullYear()} <b className="text-slate-800 dark:text-slate-200">Tiên Nghịch Auto Mobile</b>. Mọi quyền được bảo lưu.
           </div>
           <div className="text-[11px] text-slate-500 dark:text-slate-400">
-            Tool cày tự động Tiên Nghịch Mobile • Phiên bản v1.0.1 Beta Live
+            Tool cày tự động Tiên Nghịch Mobile • Phiên bản v1.0.5 Live
           </div>
         </div>
       </div>

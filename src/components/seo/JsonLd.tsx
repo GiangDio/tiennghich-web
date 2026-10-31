@@ -19,7 +19,7 @@ export default function JsonLd() {
         applicationCategory: 'GameApplication',
         description:
           'Phần mềm tool cày tự động game Tiên Nghịch Mobile tốt nhất. Tự động rèn tiên khí, nâng cấp khí đỉnh, leo thông thiên tháp, đánh chiếm cực âm địa, vượt ải chính tuyến 24/7 an toàn 100%.',
-        softwareVersion: '1.0.1',
+        softwareVersion: '1.0.5',
         offers: {
           '@type': 'AggregateOffer',
           lowPrice: '20000',

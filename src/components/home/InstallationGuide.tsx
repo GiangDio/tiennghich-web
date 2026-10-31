@@ -106,7 +106,7 @@ export default function InstallationGuide() {
                   href={`${AUTO_SERVER_URL}/download/TienNghichAuto.apk`}
                   className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blood-600 py-2.5 text-xs font-black text-white shadow-md hover:bg-blood-700 transition-all"
                 >
-                  <Download className="h-4 w-4" /> Tải Ngay (v1.0.1 Beta APK)
+                  <Download className="h-4 w-4" /> Tải Ngay (v1.0.5 APK)
                 </a>
               </div>
 
