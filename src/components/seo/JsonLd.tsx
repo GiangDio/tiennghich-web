@@ -75,7 +75,7 @@ export default function JsonLd() {
             name: 'Tôi có thể dùng thử Auto Tiên Nghịch Mobile miễn phí không?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Có! Hệ thống tự động tặng 20 phút dùng thử miễn phí mỗi ngày cho tất cả đạo hữu để trải nghiệm đầy đủ mọi tính năng trước khi mua gói.',
+              text: 'Có! Hệ thống tự động tặng 15 phút dùng thử miễn phí mỗi ngày cho tất cả đạo hữu để trải nghiệm đầy đủ mọi tính năng trước khi mua gói.',
             },
           },
           {

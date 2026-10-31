@@ -25,7 +25,7 @@ export default function InstallationGuide() {
             HƯỚNG DẪN CÀI ĐẶT & <span className="text-blood-gradient">SỬ DỤNG AUTO</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-semibold">
-            Cài đặt dễ dàng trong 1 phút trên điện thoại Android và máy tính PC. Nhận ngay <b>20 phút miễn phí mỗi ngày</b> để trải nghiệm đầy đủ tất cả tính năng cao cấp!
+            Cài đặt dễ dàng trong 1 phút trên điện thoại Android và máy tính PC. Nhận ngay <b>15 phút miễn phí mỗi ngày</b> để trải nghiệm đầy đủ tất cả tính năng cao cấp!
           </p>
         </div>
 
@@ -133,10 +133,10 @@ export default function InstallationGuide() {
                 </div>
                 <h4 className="text-sm font-black text-slate-950 dark:text-white">Vào Game & Nhận Giờ</h4>
                 <p className="text-xs text-slate-800 dark:text-slate-200 font-medium leading-relaxed">
-                  Mở app Auto Tiên Nghịch → Đăng ký hoặc Đăng nhập Tài khoản Auto → Menu Auto sẽ hiện sẵn trên màn hình game kèm 20 phút miễn phí hôm nay!
+                  Mở app Auto Tiên Nghịch → Đăng ký hoặc Đăng nhập Tài khoản Auto → Menu Auto sẽ hiện sẵn trên màn hình game kèm 15 phút miễn phí hôm nay!
                 </p>
                 <div className="rounded-lg bg-emerald-100 border border-emerald-300 p-2 text-[11px] font-bold text-emerald-950 dark:bg-emerald-950/40 dark:border-emerald-800 dark:text-emerald-300">
-                  🎁 Mỗi ngày được tặng thêm 20 phút free tự động làm mới vào 0h00.
+                  🎁 Mỗi ngày được tặng thêm 15 phút free tự động làm mới vào 0h00.
                 </div>
               </div>
             </div>

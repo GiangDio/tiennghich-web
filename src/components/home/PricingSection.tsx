@@ -193,9 +193,9 @@ export default function PricingSection() {
               <Sparkles className="h-6 w-6" />
             </div>
             <div>
-              <h4 className="text-sm font-black text-slate-950 dark:text-white">Tặng 20 phút miễn phí mỗi ngày vĩnh viễn!</h4>
+              <h4 className="text-sm font-black text-slate-950 dark:text-white">Tặng 15 phút miễn phí mỗi ngày vĩnh viễn!</h4>
               <p className="text-xs text-slate-800 dark:text-slate-300 font-medium">
-                Chưa cần nạp tiền vẫn được dùng thử 20 phút/ngày để trải nghiệm tự động rèn đồ, leo tháp, phụ bản.
+                Chưa cần nạp tiền vẫn được dùng thử 15 phút/ngày để trải nghiệm tự động rèn đồ, leo tháp, phụ bản.
               </p>
             </div>
           </div>

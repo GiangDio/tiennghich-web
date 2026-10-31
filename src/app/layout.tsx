@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     siteName: 'Tiên Nghịch Auto Mobile',
     title: 'Tiên Nghịch Auto Mobile - Tool Cày Tự Động Game Tiên Nghịch Mobile Uy Tín #1',
     description:
-      'Tải ngay Tool Auto Tiên Nghịch Mobile v1.0.5: Tự động rèn đồ, chiếm cực âm địa, leo tháp, ải chính tuyến. Nhận ngay 20 phút miễn phí mỗi ngày!',
+      'Tải ngay Tool Auto Tiên Nghịch Mobile v1.0.5: Tự động rèn đồ, chiếm cực âm địa, leo tháp, ải chính tuyến. Nhận ngay 15 phút miễn phí mỗi ngày!',
     images: [
       {
         url: 'https://tiennghich-payos.onrender.com/download/preview.png',

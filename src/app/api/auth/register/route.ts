@@ -45,7 +45,7 @@ export async function POST(req: Request) {
     // 2. Lưu vào auth store cục bộ
     const regRes = await registerNewUser(cleanAccount, cleanEmail, cleanPassword);
 
-    // 3. Lấy thông tin bản quyền và 20 phút free vừa được cấp từ server
+    // 3. Lấy thông tin bản quyền và 15 phút free vừa được cấp từ server
     const liveLicense = await checkServerAccount(cleanAccount);
 
     return NextResponse.json({
